@@ -17,7 +17,7 @@
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label">Username</label>
+							<label class="control-label">Password</label>
 							<div class="controls">
 								<input type="password" placeholder="Enter your password" id="password" class="input-l">
 							</div>
@@ -33,24 +33,36 @@
 			</div>
 			<div class="col-md-7 col-12">
 				<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
-				<form action="#" method="post" class="form-stacked">
+				<form action="/user/register" method="post" class="form-stacked">
 					<fieldset>
 						<div class="control-group">
-							<label class="control-label">Username</label>
+							<label class="control-label">First Name:</label>
 							<div class="controls">
-								<input type="text" placeholder="Enter your username" class="input-l">
+								<input type="text"  placeholder="Enter your username" name="fname" class="input-l" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">Last Name:</label>
+							<div class="controls">
+								<input type="text" name="lname" placeholder="Enter your username" class="input-l">
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label">Email address:</label>
 							<div class="controls">
-								<input type="password" placeholder="Enter your email" class="input-l">
+								<input type="email" name="email" placeholder="Enter your email" class="input-l">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">Phone Number:</label>
+							<div class="controls">
+								<input type="number" name="pno" placeholder="Enter your email" class="input-l">
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label">Password:</label>
 							<div class="controls">
-								<input type="password" placeholder="Enter your password" class="input-l">
+								<input type="password" name="password" placeholder="Enter your password" class="input-l">
 							</div>
 						</div>
 						<div class="control-group">

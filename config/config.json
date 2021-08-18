@@ -1,7 +1,10 @@
 {
     "emailid": "shankkriti@gmail.com",
+    "emailid1": "devgarg771@gmail.com",
     "emailpass": "Sona6app04",
+    "emailpass1": "763200@De",
     "URI": "mongodb+srv://shana:sonashana@cluster0.tycwq.mongodb.net/Shankkriti?retryWrites=true&w=majority",
+    "mongoose" : "mongodb+srv://Dev771:763200@De@cluster0.lkmwh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     "product": [{
         "Style": ["Sarees", "Stitched_Suit", "Unstitched_Suit"],
         "Fabric": ["Sarees", "Stitched_Suit", "Unstitched_Suit"]

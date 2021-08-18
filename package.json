@@ -17,6 +17,7 @@
     "http": "^0.0.1-security",
     "mongoose": "^5.13.2",
     "nodemailer": "^6.6.2",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "uuid": "^8.3.2"
   }
 }

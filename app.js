@@ -4,7 +4,8 @@ var flash = require("connect-flash");
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
-var connectDB = require('./config/connection');
+// var connectDB = require('./config/connection');
+var connectDBDev = require('./config/connection1');
 
 //Config start 
 var favicon = require("./config/favicon.js");
@@ -39,7 +40,7 @@ app.use(express.json());
 
 
 //some session variables i have created for me
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
@@ -49,8 +50,9 @@ app.use(function(req, res, next) {
 //routes
 app.use('/email', require('./routes/emailroutes'));
 app.use('/products', require('./routes/productroutes'));
+app.use('/user', require('./routes/userroutes'));
 app.use('/', require('./routes/mainpageroutes'));
 
-http.createServer(app).listen(port, function() {
+http.createServer(app).listen(port, function () {
     console.log("Don't wory Shekhar is here", port);
 });
