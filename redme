@@ -1,4 +1,4 @@
-…or create a new repository on the command line
+…or create a new repository on the command li
 echo "# shankkriti" >> README.md
 git init
 git add README.md
