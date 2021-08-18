@@ -28,7 +28,7 @@ class user {
                             if (err) return cb({ status: "err", msg: "Error While Saving The Data" })
                             else {
                                 ejs.renderFile("views/emailtemplates/EmailVerify.ejs", {
-                                    name: saved.Fname + " " + saved.Lname, id: saved.UUID
+                                    name: saved.Fname + " " + saved.Lname, id: saved.UUID, usname: saved.Fname + saved.Lname
                                 }, (err, send) => {
                                     if (err) return cb({ status: "err", msg: " Error While Rendering File" });
                                     else {
@@ -75,6 +75,37 @@ class user {
             }
         });
     }
+
+    Login_User(data, cb)
+    {
+        userdet.findOne({ Emailid: data.email}, (err, found)=> {
+        if(err) return cb({ status:"err", msg:"Error while finding data"});
+
+        if(found)
+        {
+            if(found.Emailveridied === true && found.Status === true)
+            {
+                if(found.Password === data.password)
+                {
+                    return cb({ status: "scc", msg: "User Loged in Succesfully", userdet: found });
+                }
+                else
+                {
+                    return cb({ status: "err", msg: "Wrong Password"});
+                }
+            }
+            else
+            {
+                return cb({ status: "err", msg: "Please Register yourself OR Verify your Email ID"});
+            }
+        }    
+        else 
+        {
+            return cb({ status:"err", msg:"Email ID is not Registered"});
+        }
+        }); // findOne
+    }
+
 };
 
 module.exports = user;

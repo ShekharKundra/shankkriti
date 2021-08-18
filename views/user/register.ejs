@@ -1,25 +1,25 @@
 <%- include ("../partials/header"); %>
 	<section class="header_text sub">
-		<img class="pageBanner" src="../assets/themes/images/pageBanner.png" alt="New products" width="100%">
+		<img class="pageBanner" src="../assets/images/pageBanner.png" alt="New products" width="100%">
 		<h4><span>Login or Regsiter</span></h4>
 	</section>
 	<section class="main-content">
 		<div class="row">
 			<div class="col-md-5 col-12">
 				<h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
-				<form action="#" method="post">
+				<form action="/user/login" method="post">
 					<input type="hidden" name="next" value="/">
 					<fieldset>
 						<div class="control-group">
-							<label class="control-label">Username</label>
+							<label class="control-label">Email</label>
 							<div class="controls">
-								<input type="text" placeholder="Enter your username" id="username" class="input-l">
+								<input type="email" name="email" placeholder="Enter your email" id="username" class="input-l">
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label">Password</label>
 							<div class="controls">
-								<input type="password" placeholder="Enter your password" id="password" class="input-l">
+								<input type="password" name="password" placeholder="Enter your password" id="password" class="input-l">
 							</div>
 						</div>
 						<div class="control-group">
