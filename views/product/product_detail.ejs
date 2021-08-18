@@ -1,0 +1,189 @@
+<%- include ("../partials/header"); %>
+    <section class="header_text sub">
+        <img class="pageBanner" src="/assets/images/pageBanner.png" alt="New products" width="100%">
+        <h4><span>Product Detail</span></h4>
+    </section>
+
+    <section class="main-content">
+        <div class="row flex-row-reverse">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-6 col-12 col">
+                        <div class="row-9">
+                            <% var arraySize=productData.ImagesUrl.length; var rndInt=Math.floor(Math.random() *
+                                arraySize) %>
+                                <a href="/assets/images/uploads/<%= productData.ImagesUrl[0] %>" class="thumbnail"><img
+                                        src="/assets/images/uploads/<%= productData.ImagesUrl[0] %>"
+                                        alt=" <%= productData.productName %>" /></a>
+                        </div>
+                        <div class="row-3" style="margin-top: 10px;">
+                            <ul class="thumbnails row" style="padding-left: 10px;">
+                                <% for(i=1;i<=arraySize-1;i++) { %>
+                                    <div class="col-3">
+                                        <li class="">
+                                            <a href="/assets/images/uploads/<%= productData.ImagesUrl[i] %>" class="thumbnail" data-fancybox-group="group1" title="Description 2"><img
+                                                    src="/assets/images/uploads/<%= productData.ImagesUrl[i] %>"
+                                                    alt="<%= productData.ImagesUrl[i] %>"></a>
+                                        </li>
+                                    </div>
+                                    <% } %>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-5 col-12 col">
+                        <div class="row-6">
+                            <address>
+                                <strong>Style:</strong> <span>
+                                    <%= productData.Style.toString().replace(/_/g, ' ' ) %>
+                                </span><br>
+                                <strong> Febric: </strong> <span>
+                                    <%= productData.Febric %>
+                                </span><br>
+                                <strong>Type:</strong> <span>
+                                    <%= productData.Type %>
+                                </span><br>
+                                <strong>Availability:</strong> <span>In Stock</span><br>
+                            </address>
+                            <h4><strong>Price: ₹ <%= productData.SP %>/-</strong></h4>
+                        </div>
+                        <div class="row-6">
+                            <form class="form-inline">
+
+                                <label name="QT" style="margin-bottom: 10px;">Qty:</label>
+                                <input type="text" class="QT" for="QT" placeholder="1">
+                                <button class="btn black-btn" for="QT" type="submit" style="margin-top: 0%;">Add to
+                                    cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#Description" role="tab" aria-controls="home" aria-selected="true">Description</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#AddInfo" role="tab" aria-controls="profile" aria-selected="false">Additional Info</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="home-tab" style="margin-top: 10px;">
+                                <p>
+                                    <%= productData.Description %>
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="AddInfo" role="tabpanel" aria-labelledby="profile-tab">
+                                <table class="table table-striped shop_attributes" style="margin-top: 10px;">
+                                    <tbody>
+                                        <tr class="">
+                                            <th>Size</th>
+                                            <td>Large, Medium, Small, X-Large</td>
+                                        </tr>
+                                        <tr class="alt">
+                                            <th>Colour</th>
+                                            <td>
+                                                <%= productData.Color %>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <br>
+
+                        <div class="col-12">
+                            <h4 class="title">
+                                <span class="pull-left"><span class="text"><span class="line">Feature
+                                            <strong> Sarees</strong></span></span>
+                                </span>
+                                <span class="pull-right">
+                                    <a class="left button" id="top" onclick="prev(this.id)"></a>
+                                    <a class="right button" id="top" onclick="next(this.id)"></a>
+                                </span>
+                            </h4>
+                            <div id="myCarousel" class="myCarousel carousel slide" data-ride="carousel" style="margin-right: 10px;">
+                                <div class="carousel-inner">
+                                    <div class="item active" id="1">
+                                        <ul class="thumbnails d-flex row">
+                                            <% var count=0 %>
+                                                <% for(i=0;i<=3;i++) { var product=sareeData[i]; var
+                                                    arraySize=product.ImagesUrl.length; var
+                                                    rndInt=Math.floor(Math.random() * arraySize) %>
+                                                    <li class="col-md-3 col-12">
+
+                                                        <div class="product-box">
+                                                            <span class="sale_tag"></span>
+                                                            <p>
+                                                                <a href="/products/detail/<%= product.productName %>"><img
+                                                                        src="/assets/images/uploads/<%= product.ImagesUrl[rndInt] %>"
+                                                                        alt="<%= product.ImagesUrl[rndInt] %>" /></a>
+                                                            </p>
+                                                            <a href="/products/detail/<%= product.productName %>" class="title">
+                                                                <%= product.Febric %>
+                                                            </a><br />
+                                                            <a href="/products/detail/<%= product.productName %>" class="category">
+                                                                <%= product.Type %>
+                                                            </a>
+                                                            <p class="/products/detail/<%= product.productName %>">
+                                                                <%= product.SP %>.00/-
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <% count++; %>
+                                                        <% if( count==4 ) {%>
+                                                            <% break; %>
+                                                                <% } %>
+                                                                    <% } %>
+
+                                        </ul>
+                                    </div>
+                                    <div class="item" id="2">
+                                        <ul class="thumbnails d-flex row">
+                                            <% var count=0 %>
+                                                <% for(i=4;i<=7;i++) { var product=sareeData[i]; var
+                                                    arraySize=product.ImagesUrl.length; var
+                                                    rndInt=Math.floor(Math.random() * arraySize) %>
+                                                    <li class="col-md-3 col-12">
+                                                        <div class="product-box">
+                                                            <span class="sale_tag"></span>
+                                                            <p>
+                                                                <a href="/products/detail/<%= product.productName %>"><img
+                                                                        src="/assets/images/uploads/<%= product.ImagesUrl[rndInt] %>"
+                                                                        alt="<%= product.ImagesUrl[rndInt] %>" /></a>
+                                                            </p>
+                                                            <a href="/products/detail/<%= product.productName %>" class="title">
+                                                                <%= product.Febric %>
+                                                            </a><br />
+                                                            <a href="/products/detail/<%= product.productName %>" class="category">
+                                                                <%= product.Type %>
+                                                            </a>
+                                                            <p class="/products/detail/<%= product.productName %>">
+                                                                <%= product.SP %>.00/-
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <% count++; %>
+                                                        <% if( count==4 ) {%>
+                                                            <% break; %>
+                                                                <% } %>
+                                                                    <% } %>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <%- include ("../partials/footer"); %>

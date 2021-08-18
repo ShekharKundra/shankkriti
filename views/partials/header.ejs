@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-startup-image" href="/assets/images/favicon/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon/favicon.png">
+    <meta name="description" content="<%= tagdata.description %>" />
+    <meta name="Keywords" content="<%= tagdata.Keywords %>">
+    <meta name="author" content="ShanKKriti">
+    <meta name="copyright" content="Copyright © 2021 ShanKKriti" />
+    <meta property="og:url" content="<%= tagdata.ogurl %>">
+    <meta property="og:title" content=" <%= tagdata.ogtitle %> ">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="<%= tagdata.ogdescription %>">
+    <meta property="og:image" content="<%= tagdata.ogimage %>">
+    <meta property="og:image:secure_url" content="<%= tagdata.ogsecure_url %>">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= tagdata.twtitle %>">
+    <meta name="twitter:description" content=" <%= tagdata.twdescription %> ">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link href="/assets/css/bootstrappage.css" rel="stylesheet" />
+    <link href="/assets/css/flexslider.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/css/main.css" rel="stylesheet" />
+    <a href="https://api.whatsapp.com/send?phone=+919999971702" class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
+    <title>
+        <%- title %>
+    </title>
+</head>
+
+<body>
+    <!--content start-->
+    <div id="top-bar" class="container">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <a href="/">
+                    <img class="mx-auto d-block img-fluid" src="/assets/images/logo.png" class="site_logo" alt="">
+                </a>
+            </div>
+            <div class="togglermenu navbar-toggler col-12" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="/assets/images/menuicon.png" alt=" " /><label>Menu</label>
+            </div>
+            <div class="col-md-7 col-12 collapse navoptions" id="navbarSupportedContent">
+                <div class="account pull-right">
+                    <ul class="nav navitems">
+                        <li class="nav-item"> <a class="nav-link" href="/products"><strong>Product</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/About"><strong>About US</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Contact"><strong>Contact US</strong></a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/FeedBack"><strong>Feed Back</strong></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper" class="container">
+        <!-- <section class="navbar main-menu">
+            <div class="navbar-inner main-menu">
+                <a href="/" class="logo pull-left"><img src="/assets/images/logo.png" class="site_logo" alt=""></a>
+                <nav id="menu" class="pull-right">
+                    <ul>
+                        <li> <a href="/product">Product</a></li>
+                        <li><a href="/About">About US</a></li>
+                        <li><a href="/Contact">Contact US</a></li>
+                        <li><a href="/Achivments">Achivments</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section> -->
+        <% if ( error && error.length> 0 ) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
+                <% if ( success && success.length> 0) { %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                    <% } %>

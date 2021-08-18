@@ -1,0 +1,116 @@
+<%- include ("../partials/header"); %>
+    <section class="header_text sub">
+        <img class="pageBanner" src="../assets/images/pageBanner.png" alt="New products" width="100%">
+    </section>
+    <section class=" main-content">
+
+        <div class="row flex-row-reverse">
+            <div class="col-md-3 col-12 col">
+                <div class="block pad types">
+                    <ul class="nav flex-column" style="text-align: left;">
+                        <li class="nav-header">Style</li>
+                        <% productDescription[0].Style.forEach(function (style) { %>
+                            <!-- <li class="active"> -->
+                            <li>
+                                <a href="/products/<%= style %>">
+                                    <%= style.toString().replace(/_/g, ' ' ) %>
+                                </a>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <br />
+                    <ul class="nav flex-column below" style="text-align: left;">
+                        <li class="nav-header">Fabric</li>
+                        <li><a href="/products">Banarsi</a></li>
+                        <li><a href="/products">Cotton</a></li>
+                        <li><a href="/products">Kota</a></li>
+                        <li><a href="/products">Crepe</a></li>
+                    </ul>
+                </div>
+                <div class="block randomizer">
+                    <h4 class="title">
+                        <span class="pull-left"><span class="text">Randomize</span></span>
+                        <span class="pull-right">
+                            <a class="left button" data-slide="prev" id="bottom" onclick="prev(this.id)"></a>
+                            <a class="right button" data-slide="next" id="bottom" onclick="next(this.id)"></a>
+                        </span>
+                    </h4>
+                    <div id="myCarousel" class="carousel slide">
+                        <div class="carousel-inner">
+
+                            <% var count=0; %>
+                                <% count++; %>
+                                    <% randomData.forEach(function (product) { var arraySize=product.ImagesUrl.length;
+                                        var rndInt=Math.floor(Math.random() * arraySize) %>
+                                        <div class="active carousel-item xyz" id="<%= count %>">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+
+                                                <a href="/products/detail/<%= product.productName %>">
+                                                    <img alt="<%= product.ImagesUrl[rndInt] %>"
+                                                        src="/assets/images/uploads/<%= product.ImagesUrl[rndInt] %>"><br />
+                                                    <%= product.Style.toString().replace(/_/g, ' ' ) %>
+                                                </a><br />
+                                                <a href="/products/detail/<%= product.productName %>" class="category">
+                                                    <%= product.Febric.toString().replace(/_/g, ' ' ) %>
+                                                </a>
+                                                <p class="price"> ₹
+                                                    <%= product.SP %>.00/-
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <% count++; %>
+                                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+                <div class="block bestseller">
+                    <h4 class="title"><strong>Best</strong> Seller</h4>
+                    <ul class="small-product">
+                        <% bestSellerData.forEach(function (product) { var arraySize=product.ImagesUrl.length; var
+                            rndInt=Math.floor(Math.random() * arraySize) %>
+                            <li>
+                                <a href="/products/detail/<%= product.productName %>" title="<%= product.productName %>">
+                                    <img src="/assets/images/uploads/<%= product.ImagesUrl[rndInt] %>"
+                                        alt="<%= product.ImagesUrl[rndInt] %>">
+                                </a>
+                                <a href="/products/detail/<%= product.productName %>" title="<%= product.productName %>">
+                                    <%= product.Style.toString().replace(/_/g, ' ' ) %> ,
+                                        <%= product.Febric.toString().replace(/_/g, ' ' ) %>
+                                </a>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 col-12">
+                <ul class="thumbnails row" style="margin-right: 20px;">
+                    <% productsData.forEach(function (product) { var arraySize=product.ImagesUrl.length; var
+                        rndInt=Math.floor(Math.random() * arraySize) %>
+                        <li class="col-md-4 col-12">
+                            <div class="product-box">
+                                <span class="sale_tag"></span>
+                                <a href="/products/detail/<%= product.productName %>">
+                                    <img src="/assets/images/uploads/<%= product.ImagesUrl[rndInt] %>"
+                                        alt="<%= product.ImagesUrl[0] %>">
+                                </a><br />
+                                <a href="/products/detail/<%= product.productName %>" class="title">
+                                    <%= product.Style.toString().replace(/_/g, ' ' ) %> <br>
+                                        <%= product.Febric.toString().replace(/_/g, ' ' ) %>
+                                </a><br />
+                                <a href="#" class="category">
+                                    <%= product.Type.toString().replace(/_/g, ' ' ) %>
+                                </a>
+                                <p class="price">
+                                    ₹
+                                    <%= product.SP %>.00/-
+                                </p>
+                            </div>
+                        </li>
+                        <% }) %>
+                </ul>
+                <hr>
+            </div>
+        </div>
+    </section>
+    <%- include ("../partials/footer"); %>

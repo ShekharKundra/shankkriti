@@ -1,0 +1,156 @@
+:root {
+    --clr-bg: rgba(120, 20, 220, .5);
+    --rotatespeed: 3s;
+  }
+  
+  body {
+    height: 100vh;
+    background-image: 
+      repeating-radial-gradient(
+        circle at top,
+        white,
+        black
+      );
+    background-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 75px;
+    perspective: 10em;
+    perspective-origin: 50% calc(50% - 2em);
+    
+   }
+  
+  .scene {
+    position: relative;
+    transform-style: perserve-3d;
+  }
+  
+  .ball {
+    position: absolute;
+    top: -2em;
+    left: -.5em;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-image: 
+      repeating-radial-gradient(
+        circle at top,
+        white, 40%,
+        black
+      );
+    background-size: 1em;
+    animation: ballani 1.5s infinite linear; 
+    /* // animation: balldown 3s infinite ease-out;  */
+  }
+  
+  .top {
+    position : absolute;
+    top: 0;
+    left: 0;
+    width: 2em;
+    height: .7em;
+    background: #444;
+    transform: translate(-50%, -620%);
+    animation: height 1.5s infinite;
+  }
+  
+  .box {
+    position: absolute;
+    top: -1em;
+    left: -1em;
+    width: 2em;
+    height: 2em;
+    animation: rotate var(--rotatespeed) infinite linear;
+    border: 
+      5px solid #f1f1f1;
+    border-radius: 20px;
+  /*   transform: translate(-50%, -50%); */
+    background-image: 
+      repeating-conic-gradient(
+        from 45deg,
+        #000 0deg 30deg,
+        var(--clr-bg) 30deg 60deg,
+        #444 60deg 90deg,
+        #000 90deg 120deg,
+        var(--clr-bg) 120deg 150deg,
+        #444 150deg 180deg
+      );
+      background-size: .3em .3em;
+  }
+  
+  .rod {
+    position: absolute;
+    width: 100vw;
+    height: .2em;
+    transform: translate(-50%, 0);
+    background-image: 
+      linear-gradient(
+        white,
+        black
+      );
+    z-index: -10;
+    background-size: 2em;
+    /* // animation: rod var(--rotatespeed) infinite ease; */
+  }
+  
+  
+  
+  
+  
+  /* // Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations// Animations */
+  
+  
+  
+  @keyframes ballani {
+    from {
+      transform: translateY(0em);
+    }
+    
+    50%{
+      transform: translateY(-2em);
+    }
+    
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes rotate {
+    to {
+      transform: rotateX(360deg);
+    }
+  }
+  
+  @keyframes height {
+    from {
+      transform: translate(-50%, -620%);
+    }
+    50%{
+      transform: translate(-50%, -670%);    
+    }
+    to {
+      transform: translate(-50%, -620%);
+    }
+  }
+  
+  @keyframes rod {
+    from {
+      background: linear-gradient(
+        white,
+        black
+      );
+    }
+    50% {
+      background: linear-gradient(
+        white,
+        black,
+        white
+      );
+    }
+    to{ 
+      background: linear-gradient(
+      black,
+      white
+    ); }
+  }

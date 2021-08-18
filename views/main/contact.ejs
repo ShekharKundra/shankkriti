@@ -1,0 +1,60 @@
+<%- include ("../partials/header"); %>
+
+    <section class="google_map">
+        <iframe width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.5239069131703!2d77.1627268146043!3d28.64402779031236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d036fc3cd5651%3A0x45e370286d8136a3!2sShanKKriti!5e0!3m2!1sen!2sin!4v1625903935840!5m2!1sen!2sin"></iframe>
+    </section>
+    <section class="header_text sub">
+        <img class="pageBanner" src="../assets/images/pageBanner.png" alt="New products" width="100%">
+        <h4><span>Contact Us</span></h4>
+    </section>
+    <section class="main-content">
+        <div class="row">
+            <div class="col-md-5 col-12">
+                <div>
+                    <span>
+
+                        <span style="font-size:x-large; color: #ef4036; ">ShanKKritti</span><br> Ranjeet Nagar,
+                    <br> New Delhi-110008<br> Email: Shankkriti@gmail.com
+
+                    <br> Phone # +919999971702
+
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-7 col-12">
+                <form id="cus" method="POST" action="/email/send">
+                    <div class="form-group" style=" background: transparent ">
+                        <!--Header-->
+                        <div class="text-center">
+                            <h3 style=" color: coral; ">
+                                Ask Query
+                            </h3>
+                        </div>
+                        <!--Headerend -->
+                        <!--Body-->
+                        <div class="form-group">
+                            <input type="text" id="uname" name="uname" class=" form-control transparent-input" placeholder="Enter Name" required>
+
+                        </div><br />
+                        <div class="form-group">
+                            <input type="email" id="uemail" name="uemail" class=" form-control transparent-input" placeholder="Enter Email" required>
+
+                        </div><br />
+                        <div class="form-group">
+                            <input type="Phone" id="uphno" name="uphno" class=" form-control transparent-input" placeholder="Enter Phone" required>
+
+                        </div><br />
+                        <div class="form-group">
+                            <textarea type="text" id="umsg" name="umsg" class=" form-control transparent-input" Text="NAME" placeholder="Enter Message" row="7" required></textarea>
+                        </div><br />
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary" style="background-color: #ef4036 ;">SEND</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <%- include ("../partials/footer"); %>

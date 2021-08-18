@@ -1,0 +1,217 @@
+<%- include ("../partials/header"); %>
+	<section class="header_text sub">
+		<img class="pageBanner" src="../assets/themes/images/pageBanner.png" alt="New products" width="100%">
+		<h4><span>Check Out</span></h4>
+	</section>
+	<section class="main-content">
+		<div class="row">
+			<div class="col-12">
+				<div class="accordion" id="accordionFlushExample">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingOne">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#flush-collapseOne" aria-expanded="false"
+								aria-controls="flush-collapseOne">
+								Checkout Options
+							</button>
+						</h2>
+						<div id="flush-collapseOne" class="accordion-collapse collapse"
+							aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+							<div class="accordion-body">
+								<div class="row">
+									<div class="col-md-6 col-12" style="margin-bottom: 20px;">
+										<h4>New Customer</h4>
+										<p>By creating an account you will be able to shop faster, be up to date on an
+											order's status, and keep track of the orders you have previously made.</p>
+										<form action="#" method="post">
+											<fieldset class="d-flex flex-column">
+												<label class="radio" for="register" style="margin-bottom: 10px;">
+													<input type="radio" name="account" value="register" id="register"
+														checked="checked">Register Account
+												</label>
+												<label class="radio" for="guest">
+													<input type="radio" name="account" value="guest" id="guest">Guest
+													Checkout
+												</label>
+												<br>
+												<button class="btn black-btn" data-toggle="collapse"
+													data-parent="#collapse2" style="width: 100px;">Continue</button>
+											</fieldset>
+										</form>
+									</div>
+									<div class="col-6">
+										<h4>Returning Customer</h4>
+										<p>I am a returning customer</p>
+										<form action="#" method="post">
+											<fieldset>
+												<div class="control-group">
+													<label class="control-label">Username</label>
+													<div class="controls">
+														<input type="text" placeholder="Enter your username"
+															id="username" class="input-l">
+													</div>
+												</div>
+												<div class="control-group">
+													<label class="control-label">Password</label>
+													<div class="controls">
+														<input type="password" placeholder="Enter your password"
+															id="password" class="input-l">
+													</div>
+												</div>
+												<button class="btn btn-dark">Continue</button>
+											</fieldset>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingTwo">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#flush-collapseTwo" aria-expanded="false"
+								aria-controls="flush-collapseTwo">
+								Account &amp; Billing Details
+							</button>
+						</h2>
+						<div id="flush-collapseTwo" class="accordion-collapse collapse"
+							aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+							<div class="accordion-body">
+								<div class="row">
+									<div class="col-md-6 col-12">
+										<h4>Your Personal Details</h4>
+										<div class="control-group">
+											<label class="control-label">First Name</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Last Name</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Email Address</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Telephone</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Fax</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 col-12">
+										<h4>Your Address</h4>
+										<div class="control-group">
+											<label class="control-label">Company</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Company ID:</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label"><span class="required">*</span> Address
+												1:</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Address 2:</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label"><span class="required">*</span> City:</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label"><span class="required">*</span> Post
+												Code:</label>
+											<div class="controls">
+												<input type="text" placeholder="" class="input-l">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label"><span class="required">*</span>
+												Country:</label>
+											<div class="controls">
+												<select class="input-l">
+													<option value="1">Afghanistan</option>
+													<option value="2">Albania</option>
+													<option value="3">Algeria</option>
+													<option value="4">American Samoa</option>
+													<option value="5">Andorra</option>
+													<option value="6">Angola</option>
+												</select>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label"><span class="required">*</span> Region /
+												State:</label>
+											<div class="controls">
+												<select name="zone_id" class="input-l">
+													<option value=""> --- Please Select --- </option>
+													<option value="3513">Aberdeen</option>
+													<option value="3514">Aberdeenshire</option>
+													<option value="3515">Anglesey</option>
+													<option value="3516">Angus</option>
+													<option value="3517">Argyll and Bute</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingThree">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#flush-collapseThree" aria-expanded="false"
+								aria-controls="flush-collapseThree">
+								Confirm Order
+							</button>
+						</h2>
+						<div id="flush-collapseThree" class="accordion-collapse collapse"
+							aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+							<div class="accordion-body">
+								<div class="row">
+									<div class="control-group">
+										<label for="textarea" class="control-label col-12">Comments
+											<div class="controls">
+												<textarea rows="3" id="textarea" class="col-12"></textarea>
+											</div>
+										</label>
+									</div>
+									<div class="col-9"></div>
+									<button class="btn btn-dark col-3" style="margin-top: 10px;">Confirm
+										order</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<%- include ("../partials/footer"); %>
