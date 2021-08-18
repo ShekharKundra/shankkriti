@@ -78,7 +78,7 @@ class user {
 
     Login_User(data, cb)
     {
-        userdet.findOne({ Username: data.username}, (err, found)=> {
+        userdet.findOne({ Emailid: data.email}, (err, found)=> {
         if(err) return cb({ status:"err", msg:"Error while finding data"});
 
         if(found)
