@@ -65,4 +65,17 @@ router.get('/login', (req, res) => {
     });
 });
 
+router.post('/login', (req,res) => {
+    user.Login_User(req.body, (cbData)=> {
+        if(cbData.status == "err") {
+            req.flash("error", cbData.msg);
+            return res.status(200).redirect("/user/reg");
+        }
+        else {
+            req.flash("success", cbData.msg);
+            return res.status(200).redirect("/index");
+        }
+    })
+})
+
 module.exports = router;
