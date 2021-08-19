@@ -76,8 +76,8 @@ router.post('/login', (req, res) => {
         }
         else {
             req.flash("success", cbData.msg);
-            var token = jwt.sign({ data: cbData.userdata }, "Hello");
-            res.cookie("token", token);
+            var token = jwt.sign({ data: cbData.userdata }, "Hello");   // creating token // 
+            res.cookie("token", token); // create cookie //
             return res.status(200).redirect("/index");
         }
     })
@@ -99,6 +99,7 @@ router.get('/profile', tokenverify.Is_token, (req, res) => {
                     req.flash("error", cbData.msg);
                     return res.status(200).redirect('/');
                 } else {
+                    console.log(cbData.data);
                     res.status(200).render('../views/user/profile', {
                         title: "My Profile",
                         tagdata: "",
@@ -137,6 +138,7 @@ router.get('/edit_Profile', tokenverify.Is_token, (req, res) => {
                     req.flash("error", cbData.msg);
                     return res.status(200).redirect('/');
                 } else {
+                    console.log(cbData.data);
                     res.status(200).render('../views/user/editprofile', {
                         title: "My Profile",
                         tagdata: "",
@@ -165,13 +167,18 @@ router.post('/edit', (req, res) => {
             req.flash("error", cbData.msg);
             res.status(200).redirect('/user/profile');
         } else {
-            res.clearCookie(token);
+            res.clearCookie("token");
             var token = jwt.sign({ data: cbData.data }, "Hello");
             res.cookie("token", token);
             req.flash("success", cbData.msg);
             res.status(200).redirect('/user/profile');
         }
     });
+});
+
+router.get('/logout', (req,res) => {
+    res.clearCookie('token');
+    res.status(200).redirect('/');
 });
 
 module.exports = router;

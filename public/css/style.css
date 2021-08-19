@@ -1089,3 +1089,12 @@ td>a>img {
     border: 2px solid #000;
     padding: 2px;
 }
+#header_Profile_Icon
+{
+    width: 1.7em;
+}
+.profileItem:hover
+{
+    background-color: #fd7e14;
+    font-weight: bold;
+}

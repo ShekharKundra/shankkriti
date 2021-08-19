@@ -48,49 +48,92 @@
                     </div>
                 </div>
 
-                <fieldset id="addressField" class="mt-4">
-                    <div class="control-group">
-                        <label class="control-label">Address:</label>
-                        <div class="controls">
-                            <input type="text" style="width: 100%;" name="address" placeholder="Address" class="input-l" value="<%= userdetails.Address.HouseNo %>">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label">City:</label>
-                        <div class="controls">
-                            <input type="text" style="width: 100%;" name="city" placeholder="City" class="input-l" value="<%= userdetails.Address.City %>" >
-                        </div>
-                    </div>
-
-                    <div class="control-group row">
-                        
-                        <div class="col-md-6 col-12">
-                            <label class="control-label">State:</label>
+                <% if(userdetails.Address == null) { %>
+                    
+                    <fieldset id="addressField" class="mt-4">
+                        <div class="control-group">
+                            <label class="control-label">Address:</label>
                             <div class="controls">
-                                <input type="text" placeholder="Enter your State" name="state" class="input-l" value="<%= userdetails.Address.State %>" />
-                            </div>    
-                        </div>
-
-                        <div class="col-md-6 col-12">
-                            <label class="control-label">Postcode:</label>
-                            <div class="controls">
-                                <input type="text" name="pcode" placeholder="Enter your postalcode" class="input-l" value="<%= userdetails.Address.PostalCode %>" >
+                                <input type="text" style="width: 100%;" name="address" placeholder="Address" class="input-l" value="" >
                             </div>
                         </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label">Country:</label>
-                        <div class="controls">
-                            <input type="text" style="width: 100%;" name="country" placeholder="Country" class="input-l" value="<%= userdetails.Address.Country %>" >
+                
+                        <div class="control-group">
+                            <label class="control-label">City:</label>
+                            <div class="controls">
+                                <input type="text" style="width: 100%;" name="city" placeholder="City" class="input-l" value="">
+                            </div>
                         </div>
-                    </div>
-                </fieldset>
-
+                
+                        <div class="control-group row">
+                            
+                            <div class="col-md-6 col-12">
+                                <label class="control-label">State:</label>
+                                <div class="controls">
+                                    <input type="text" placeholder="Enter your State" name="state" class="input-l" value="">
+                                </div>    
+                            </div>
+                
+                            <div class="col-md-6 col-12">
+                                <label class="control-label">Postcode:</label>
+                                <div class="controls">
+                                    <input type="text" name="postalcode" placeholder="Enter your postalcode" class="input-l" value="" >
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="control-group">
+                            <label class="control-label">Country:</label>
+                            <div class="controls">
+                                <input type="text" style="width: 100%;" name="country" placeholder="Country" class="input-l" value="" >
+                            </div>
+                        </div>
+                    </fieldset>
+                <% } else { %>
+                
+                                <fieldset id="addressField" class="mt-4">
+                                    <div class="control-group">
+                                        <label class="control-label">Address:</label>
+                                        <div class="controls">
+                                            <input type="text" style="width: 100%;" name="address" placeholder="Address" class="input-l" value="<%= userdetails.Address.address.HouseNo %>" >
+                                        </div>
+                                    </div>
+                
+                                    <div class="control-group">
+                                        <label class="control-label">City:</label>
+                                        <div class="controls">
+                                            <input type="text" style="width: 100%;" name="city" placeholder="City" class="input-l" value="<%= userdetails.Address.address.City %>" >
+                                        </div>
+                                    </div>
+                
+                                    <div class="control-group row">
+                                        
+                                        <div class="col-md-6 col-12">
+                                            <label class="control-label">State:</label>
+                                            <div class="controls">
+                                                <input type="text" placeholder="Enter your State" name="state" class="input-l" value="<%= userdetails.Address.address.State %>" >
+                                            </div>    
+                                        </div>
+                
+                                        <div class="col-md-6 col-12">
+                                            <label class="control-label">Postcode:</label>
+                                            <div class="controls">
+                                                <input type="text" name="pcode" placeholder="Enter your postalcode" class="input-l" value="<%= userdetails.Address.address.PostalCode %>" >
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="control-group">
+                                        <label class="control-label">Country:</label>
+                                        <div class="controls">
+                                            <input type="text" style="width: 100%;" name="country" placeholder="Country" class="input-l" value="<%= userdetails.Address.address.Country %>" >
+                                        </div>
+                                    </div>
+                                </fieldset>
+                <% } %>
                 <hr>
                 <div class="actions center"><input tabindex="9" class="btn btn-dark large" type="submit"
-                        value="Edit Profile"></div>
+                        value="SUBMIT"></div>
             </fieldset>
         </form>
     </div>

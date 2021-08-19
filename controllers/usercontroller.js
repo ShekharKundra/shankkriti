@@ -43,7 +43,7 @@ class user {
                                         }
                                         transporter.sendMail(mail, (err, scc) => {
                                             if (err) return cb({ Status: "err", msg: err });
-                                            return cb({ status: "scc", msg: "Data Send And verificstion Email Sent" });
+                                            return cb({ status: "scc", msg: "Data Sent And Verification link has been Sent" });
                                         });
                                     }
                                 });
