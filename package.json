@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "http": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.2",
     "nodemailer": "^6.6.2",
     "serve-favicon": "^2.5.0",

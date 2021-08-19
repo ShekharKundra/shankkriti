@@ -1,8 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var jwt = require('jsonwebtoken');
+var token = require('../token/tokenverification');
 var usercontroller = require('../controllers/usercontroller');
 
 var user = new usercontroller();
+var tokenverify = new token();
 
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
@@ -65,14 +68,16 @@ router.get('/login', (req, res) => {
     });
 });
 
-router.post('/login', (req,res) => {
-    user.Login_User(req.body, (cbData)=> {
-        if(cbData.status == "err") {
+router.post('/login', tokenverify.Is_token, (req, res) => {
+    user.Login_User(req.body, (cbData) => {
+        if (cbData.status == "err") {
             req.flash("error", cbData.msg);
             return res.status(200).redirect("/user/reg");
         }
         else {
             req.flash("success", cbData.msg);
+            var token = jwt.sign({ data: cbData.userdata }, "Hello");
+            res.cookie("token", token);
             return res.status(200).redirect("/index");
         }
     })

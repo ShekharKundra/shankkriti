@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var ProductData = require('../controllers/productsdatacontroller');
+var token = require('../token/tokenverification');
+
 var products = new ProductData();
+var tokenverify = new token();
 
 // for body parser and json data
 router.use(express.json());

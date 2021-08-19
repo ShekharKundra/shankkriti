@@ -4,7 +4,7 @@
     "emailid1": "devgarg771@gmail.com",
     "emailpass1": "763200@De",
     "URI": "mongodb+srv://shana:sonashana@cluster0.tycwq.mongodb.net/Shankkriti?retryWrites=true&w=majority",
-    "mongoose" : "mongodb+srv://bhavesh1999:@@Kuttu1999@cluster0.xplrc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongoose" : "mongodb+srv://Dev771:763200@De@cluster0.lkmwh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     "product": [{
         "Style": ["Sarees", "Stitched_Suit", "Unstitched_Suit"],
         "Fabric": ["Sarees", "Stitched_Suit", "Unstitched_Suit"]

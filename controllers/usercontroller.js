@@ -4,6 +4,7 @@ var transporter = require('../config/mailler.js');
 
 
 class user {
+
     User_Registration = (data, cb) => {
         userdet.findOne({ Emailid: data.email }, (err, found) => {
             if (err) return cb({ status: "err", msg: "Internal Error While Finding Data" })
@@ -76,33 +77,22 @@ class user {
         });
     }
 
-    Login_User(data, cb)
-    {
-        userdet.findOne({ Emailid: data.email}, (err, found)=> {
-        if(err) return cb({ status:"err", msg:"Error while finding data"});
-
-        if(found)
-        {
-            if(found.Emailveridied === true && found.Status === true)
-            {
-                if(found.Password === data.password)
-                {
-                    return cb({ status: "scc", msg: "User Loged in Succesfully", userdet: found });
+    Login_User(data, cb) {
+        userdet.findOne({ Emailid: data.email }, (err, found) => {
+            if (err) return cb({ status: "err", msg: "Error while finding data" });
+            if (found) {
+                if (found.Emailveridied === true && found.Status === true) {
+                    if (found.Password === data.password) {
+                        return cb({ status: "scc", msg: "User Loged in Succesfully", userdata: found });
+                    } else {
+                        return cb({ status: "err", msg: "Wrong Password" });
+                    }
+                } else {
+                    return cb({ status: "err", msg: "Please Register yourself OR Verify your Email ID" });
                 }
-                else
-                {
-                    return cb({ status: "err", msg: "Wrong Password"});
-                }
+            } else {
+                return cb({ status: "err", msg: "Email ID is not Registered" });
             }
-            else
-            {
-                return cb({ status: "err", msg: "Please Register yourself OR Verify your Email ID"});
-            }
-        }    
-        else 
-        {
-            return cb({ status:"err", msg:"Email ID is not Registered"});
-        }
         }); // findOne
     }
 
