@@ -9,21 +9,21 @@
     <div>
         <h4 class="title"><span class="text"><strong>Profile</strong> Page</span></h4>
 
-        <form action="/user/edit_Profile" method="get" class="form-stacked">            
+        <form action="/user/edit" method="post" class="form-stacked">            
             <fieldset>
                 <div class="control-group row">
                     
                     <div class="col-md-6 col-12">
                         <label class="control-label">First Name:</label>
                         <div class="controls">
-                            <input type="text" placeholder="Enter your First Name" name="fname" class="input-l" value="<%= userdetails.Fname %>" readonly/>
+                            <input type="text" placeholder="Enter your First Name" name="fname" class="input-l" value="<%= userdetails.Fname %>"/>
                         </div>    
                     </div>
 
                     <div class="col-md-6 col-12">
                         <label class="control-label">Last Name:</label>
                         <div class="controls">
-                            <input type="text" name="lname" placeholder="Enter your Last Name" class="input-l" value="<%= userdetails.Lname %>" readonly>
+                            <input type="text" name="lname" placeholder="Enter your Last Name" class="input-l" value="<%= userdetails.Lname %>" >
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                 <div class="control-group">
                     <label class="control-label">Username:</label>
                     <div class="controls">
-                        <input type="text" style="width: 100%;" name="username" placeholder="Enter your username" class="input-l" value="<%= userdetails.Username %>" readonly>
+                        <input type="text" style="width: 100%;" name="username" placeholder="Enter your username" class="input-l" value="<%= userdetails.Username %>" >
                     </div>
                 </div>
                 
@@ -47,22 +47,19 @@
                         <input type="number" style="width: 100%;" name="pno" placeholder="Enter your phone number" class="input-l" value="<%= userdetails.PhoneNo %>" readonly>
                     </div>
                 </div>
-<% if(userdetails.Address.length == 0) { %>
-    Dev
-<% } else { %>
 
                 <fieldset id="addressField" class="mt-4">
                     <div class="control-group">
                         <label class="control-label">Address:</label>
                         <div class="controls">
-                            <input type="text" style="width: 100%;" name="address" placeholder="Address" class="input-l" value="<%= userdetails.Address[0].address.HouseNo %>" readonly>
+                            <input type="text" style="width: 100%;" name="address" placeholder="Address" class="input-l" value="<%= userdetails.Address.HouseNo %>">
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label">City:</label>
                         <div class="controls">
-                            <input type="text" style="width: 100%;" name="city" placeholder="City" class="input-l" value="<%= userdetails.Address[0].address.City %>" readonly>
+                            <input type="text" style="width: 100%;" name="city" placeholder="City" class="input-l" value="<%= userdetails.Address.City %>" >
                         </div>
                     </div>
 
@@ -71,14 +68,14 @@
                         <div class="col-md-6 col-12">
                             <label class="control-label">State:</label>
                             <div class="controls">
-                                <input type="text" placeholder="Enter your State" name="state" class="input-l" value="<%= userdetails.Address[0].address.State %>" readonly/>
+                                <input type="text" placeholder="Enter your State" name="state" class="input-l" value="<%= userdetails.Address.State %>" />
                             </div>    
                         </div>
 
                         <div class="col-md-6 col-12">
                             <label class="control-label">Postcode:</label>
                             <div class="controls">
-                                <input type="text" name="postalcode" placeholder="Enter your postalcode" class="input-l" value="<%= userdetails.Address[0].address.PostalCode %>" readonly>
+                                <input type="text" name="pcode" placeholder="Enter your postalcode" class="input-l" value="<%= userdetails.Address.PostalCode %>" >
                             </div>
                         </div>
                     </div>
@@ -86,11 +83,11 @@
                     <div class="control-group">
                         <label class="control-label">Country:</label>
                         <div class="controls">
-                            <input type="text" style="width: 100%;" name="country" placeholder="Country" class="input-l" value="<%= userdetails.Address[0].address.Country %>" readonly>
+                            <input type="text" style="width: 100%;" name="country" placeholder="Country" class="input-l" value="<%= userdetails.Address.Country %>" >
                         </div>
                     </div>
                 </fieldset>
-<% } %>
+
                 <hr>
                 <div class="actions center"><input tabindex="9" class="btn btn-dark large" type="submit"
                         value="Edit Profile"></div>

@@ -17,6 +17,31 @@ var userdetials = mongoose.Schema({
     PhoneNo: {
         type: Number,
     },
+    Address: {
+        type: Array,
+        address: {
+            HouseNo: {
+                type: String,
+                default: " "
+            },
+            City: {
+                type: String,
+                default: " "
+            },
+            State: {
+                type: String,
+                default: " "
+            },
+            PostalCode: {
+                type: Number,
+                default: " "
+            },
+            Country: {
+                type: String,
+                default: " "
+            }
+        }
+    },
     Emailveridied: {
         type: Boolean,
         default: false,
@@ -30,9 +55,8 @@ var userdetials = mongoose.Schema({
     },
     UUID: {
         type: String,
-        default: uuid.v4(),
     },
-    Date: {
+    Date_Of_Joining: {
         type: Date,
         default: Date.now(),
     },

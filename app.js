@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 // var connectDB = require('./config/connection');
-var connectDBDev = require('./config/connection1');
+var connectDBDev = require('./config/connection');
 
 //Config start 
 var favicon = require("./config/favicon.js");
