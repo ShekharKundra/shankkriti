@@ -1071,3 +1071,21 @@ td>a>img {
 }
 
 /* Start My CSS */
+
+
+/* My Profile CSS Changes */
+
+#addressField
+{
+    border: 1px solid #000; 
+    padding: 10px; 
+    border-bottom: none;
+    background-color: rgb(245, 245, 245);
+}
+#profilePic
+{
+    width: 10em;
+    border-radius: 50%;
+    border: 2px solid #000;
+    padding: 2px;
+}

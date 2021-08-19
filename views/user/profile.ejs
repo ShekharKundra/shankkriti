@@ -1,0 +1,182 @@
+<%- include ("../partials/header"); %>
+
+<section class="header_text sub">
+    <img class="pageBanner" src="../assets/images/pageBanner.png" alt="New products" width="100%">
+    <h4><span>MY PROFILE</span></h4>
+</section>
+
+<section class="main-content d-flex justify-content-center">
+    <div>
+        <h4 class="title"><span class="text"><strong>Profile</strong> Page</span></h4>
+
+        <form action="/user/register" method="post" class="form-stacked">
+
+             <!-- <center>  <img src="../assets/images/profilePic.png" id="profilePic" alt="profilePic"> </center> -->
+            
+            <fieldset>
+                <div class="control-group row">
+                    
+                    <div class="col-md-6 col-12">
+                        <label class="control-label">First Name:</label>
+                        <div class="controls">
+                            <input type="text" placeholder="Enter your First Name" name="fname" class="input-l" />
+                        </div>    
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                        <label class="control-label">Last Name:</label>
+                        <div class="controls">
+                            <input type="text" name="lname" placeholder="Enter your Last Name" class="input-l">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="control-group">
+                    <label class="control-label">Username:</label>
+                    <div class="controls">
+                        <input type="text" style="width: 100%;" name="username" placeholder="Enter your username" class="input-l">
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Email address:</label>
+                    <div class="controls">
+                        <input type="email" style="width: 100%;" name="email" placeholder="Enter your email" class="input-l">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Phone Number:</label>
+                    <div class="controls">
+                        <input type="number" style="width: 100%;" name="pno" placeholder="Enter your phone number" class="input-l">
+                    </div>
+                </div>
+
+                <fieldset id="addressField" class="mt-4">
+                    <div class="control-group">
+                        <label class="control-label">Address:</label>
+                        <div class="controls">
+                            <input type="text" style="width: 100%;" name="address" placeholder="Address" class="input-l">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">City:</label>
+                        <div class="controls">
+                            <input type="text" style="width: 100%;" name="city" placeholder="City" class="input-l">
+                        </div>
+                    </div>
+
+                    <div class="control-group row">
+                        
+                        <div class="col-md-6 col-12">
+                            <label class="control-label">State:</label>
+                            <div class="controls">
+                                <input type="text" placeholder="Enter your State" name="state" class="input-l" />
+                            </div>    
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <label class="control-label">Postcode:</label>
+                            <div class="controls">
+                                <input type="text" name="postalcode" placeholder="Enter your postalcode" class="input-l">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Country:</label>
+                        <div class="controls">
+                            <input type="text" style="width: 100%;" name="country" placeholder="Country" class="input-l">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <hr>
+                <div class="actions center"><input tabindex="9" class="btn btn-dark large" type="submit"
+                        value="Edit Profile"></div>
+            </fieldset>
+        </form>
+    </div>
+</section>
+
+
+<!-- <section class="main-content">
+    <div class="row">
+        <div class="col-md-5 col-12">
+            <h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
+            <form action="/user/login" method="post">
+                <input type="hidden" name="next" value="/">
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label">Email</label>
+                        <div class="controls">
+                            <input type="email" name="email" placeholder="Enter your email" id="username" class="input-l">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Password</label>
+                        <div class="controls">
+                            <input type="password" name="password" placeholder="Enter your password" id="password" class="input-l">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <input tabindex="3" class="btn btn-dark large" type="submit" value="Sign into your account">
+                        <hr>
+                        <p class="reset">Recover your <a tabindex="4" href="#"
+                                title="Recover your username or password">username or password</a></p>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-7 col-12">
+            <h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
+            <form action="/user/register" method="post" class="form-stacked">
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label">First Name:</label>
+                        <div class="controls">
+                            <input type="text"  placeholder="Enter your username" name="fname" class="input-l" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Last Name:</label>
+                        <div class="controls">
+                            <input type="text" name="lname" placeholder="Enter your username" class="input-l">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Email address:</label>
+                        <div class="controls">
+                            <input type="email" name="email" placeholder="Enter your email" class="input-l">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Phone Number:</label>
+                        <div class="controls">
+                            <input type="number" name="pno" placeholder="Enter your email" class="input-l">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Password:</label>
+                        <div class="controls">
+                            <input type="password" name="password" placeholder="Enter your password" class="input-l">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <p>Now that we know who you are. I'm not a mistake! In a comic, you know how you can
+                            tell who the arch-villain's going to be?</p>
+                    </div>
+                    <hr>
+                    <div class="actions"><input tabindex="9" class="btn btn-dark large" type="submit"
+                            value="Create your account"></div>
+                </fieldset>
+            </form>
+        </div>
+    </div> 
+</section> -->
+
+
+
+
+
+<%- include ("../partials/footer"); %>

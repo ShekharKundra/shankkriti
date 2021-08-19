@@ -83,4 +83,15 @@ router.post('/login', tokenverify.Is_token, (req, res) => {
     })
 })
 
+router.get('/profile', (req, res) => {
+    res.status(200).render('../views/user/profile', {
+        title: "My Profile",
+        tagdata: "",
+        productsData: "cbData.data",
+        bestSellerData: "cbBestSeller.data",
+        randomData: "",
+        productDescription: ""
+    });
+});
+
 module.exports = router;
