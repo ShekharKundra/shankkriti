@@ -69,7 +69,7 @@ class user {
                                                     }
                                                 })
                                             }
-                                            return cb({ status: "scc", msg: "Data Saved And Verification link has been Sent" });
+                                            return cb({ status: "scc", msg: "Data Saved And Verification link has been Senton your Email ID" });
                                         });
                                     }
                                 });
@@ -169,6 +169,14 @@ class user {
             else return cb({ status: "scc", msg: "Data Not found" });
         });
     }
+
+    emailError = (cb) => {
+        userdet.find({EmailErr: true}, (err,found) => { 
+            if(err) return cb({status:"err", msg:"error while finding data."});
+            else if(!found) return cb({status:"abc", msg:"No Data Found"});
+            else return cb({status:"scc", msg:"Data Found Successfully", data:found});
+        });
+    }      
 };
 
 module.exports = user;
