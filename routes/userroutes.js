@@ -22,9 +22,9 @@ router.get('/checkout', (req, res) => {
     });
 });
 
-router.get('/reg', (req, res) => {
+router.get('/reg', tokenverify.Is_token_Login, (req, res) => {
     res.status(200).render('../views/user/register', {
-        title: "Sarees",
+        title: "Login / Register",
         tagdata: "",
         productsData: "cbData.data",
         bestSellerData: "cbBestSeller.data",
@@ -33,7 +33,7 @@ router.get('/reg', (req, res) => {
     });
 });
 
-router.post('/register', (req, res) => {
+router.post('/register', tokenverify.Is_token_Login, (req, res) => {
     console.log(req.body);
     user.User_Registration(req.body, cbData => {
         if (cbData.status == "err") {
@@ -49,7 +49,7 @@ router.post('/register', (req, res) => {
     });
 });
 
-router.post('/activate/:id', (req, res) => {
+router.post('/activate/:id', tokenverify.Is_token_Login, (req, res) => {
     user.Email_Verify(req.params.id, cbData => {
         if (cbData.status == "err") {
             req.flash("error", cbData.msg);
@@ -62,13 +62,11 @@ router.post('/activate/:id', (req, res) => {
     })
 });
 
-router.get('/login', (req, res) => {
-    res.status(200).render('../views/user/register', {
-        title: "Login"
-    });
+router.get('/login', tokenverify.Is_token_Login, (req, res) => {
+    res.status(200).redirect('/reg');
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', tokenverify.Is_token_Login, (req, res) => {
     user.Login_User(req.body, (cbData) => {
         if (cbData.status == "err") {
             req.flash("error", cbData.msg);
@@ -85,14 +83,13 @@ router.post('/login', (req, res) => {
 
 router.get('/profile', tokenverify.Is_token, (req, res) => {
     var token = res.locals.user;
-    // console.log(token);
+    // var is_User = res.locals.is_User;
     var userdetails = jwt.verify(token, "Hello", (err, scc) => {
         if (err) {
             console.log(err)
             req.flash("error", 'Some Error Occured');
             return res.status(200).redirect('/');
         } else {
-            console.log(scc);
             user.profiledetails(scc, cbData => {
                 if (cbData.status == "err") {
                     console.log(cbData.msg);
@@ -107,6 +104,7 @@ router.get('/profile', tokenverify.Is_token, (req, res) => {
                         bestSellerData: "cbBestSeller.data",
                         randomData: "",
                         productDescription: "",
+                        // is_User: is_User,
                         userdetails: {
                             Fname: cbData.data.Fname,
                             Lname: cbData.data.Lname,
@@ -161,7 +159,7 @@ router.get('/edit_Profile', tokenverify.Is_token, (req, res) => {
     })
 });
 
-router.post('/edit', (req, res) => {
+router.post('/edit', tokenverify.Is_token, (req, res) => {
     user.edit_profile(req.body, cbData => {
         if (cbData.status == "err") {
             req.flash("error", cbData.msg);
@@ -176,7 +174,7 @@ router.post('/edit', (req, res) => {
     });
 });
 
-router.get('/logout', (req,res) => {
+router.get('/logout', tokenverify.Is_token, (req, res) => {
     res.clearCookie('token');
     res.status(200).redirect('/');
 });

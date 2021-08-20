@@ -6,13 +6,11 @@ var uuid = require('uuid');
 class user {
 
     User_Registration = (data, cb) => {
-        userdet.findOne({ Emailid: data.email }, (err, found) => {
-            if (err) return cb({ status: "err", msg: "Internal Error While Finding Data" })
-            else if (found) return cb({ status: "err", msg: "User With email Already Exists" });
+        this.find_One_user_for_not_found({ parameter: "Emailid", data: data.email }, cbData => {
+            if (cbData.status == "err") return cb({ status: "err", msg: cbData.msg });
             else {
-                userdet.findOne({ PhoneNo: data.pno }, (err, found) => {
-                    if (err) return cb({ status: "err", msg: "Internal Error While Finding Data" })
-                    else if (found) return cb({ status: "err", msg: "User With email Already Exists" });
+                this.find_One_user_for_not_found({ parameter: "PhoneNo", data: data.pno }, cbData => {
+                    if (cbData.status == "err") return cb({ status: "err", msg: cbData.msg });
                     else {
                         var userdtl = {
                             Fname: data.fname,
@@ -23,16 +21,29 @@ class user {
                             Password: data.password,
                             UUID: uuid.v4()
                         }
-
                         var userdata = userdet(userdtl);
-
                         userdata.save((err, saved) => {
                             if (err) return cb({ status: "err", msg: "Error While Saving The Data" })
                             else {
                                 ejs.renderFile("views/emailtemplates/EmailVerify.ejs", {
                                     name: saved.Fname + " " + saved.Lname, id: saved.UUID, usname: saved.Fname + saved.Lname
                                 }, (err, send) => {
-                                    if (err) return cb({ status: "err", msg: " Error While Rendering File" });
+                                    if (err) {
+                                        this.find_One_user_for_found({ parameter: "Emailid", data: saved.emailid }, cbData => {
+                                            if (cbData.status == "err") return cb({ status: "err", msg: "Something Wrong Happened" });
+                                            else {
+                                                userdet.findOneAndUpdate({ Emailid: saved.Emailid }, {
+                                                    $set: {
+                                                        EmailErr: true,
+                                                        EmailErrMsg: "Error While File Render",
+                                                    }
+                                                }, (err, done) => {
+                                                    if (err) return cb({ status: "err", msg: "Couldn't Update the Error" });
+                                                    else return cb({ status: "scc", msg: "Mail While Be send Timely" });
+                                                });
+                                            }
+                                        })
+                                    }
                                     else {
                                         var mail = {
                                             from: '"PEEK-A-BOO" <foo@example.com>',
@@ -42,8 +53,23 @@ class user {
                                             html: send,
                                         }
                                         transporter.sendMail(mail, (err, scc) => {
-                                            if (err) return cb({ Status: "err", msg: err });
-                                            return cb({ status: "scc", msg: "Data Sent And Verification link has been Sent" });
+                                            if (err) {
+                                                this.find_One_user_for_found({ parameter: "Emailid", data: saved.emailid }, cbData => {
+                                                    if (cbData.status == "err") return cb({ status: "err", msg: "Something Wrong Happened" });
+                                                    else {
+                                                        userdet.findOneAndUpdate({ Emailid: saved.Emailid }, {
+                                                            $set: {
+                                                                EmailErr: true,
+                                                                EmailErrMsg: "Error While Sending File",
+                                                            }
+                                                        }, (err, done) => {
+                                                            if (err) return cb({ status: "err", msg: "Couldn't Update the Error" });
+                                                            else return cb({ status: "scc", msg: "Mail While Be send Timely" });
+                                                        });
+                                                    }
+                                                })
+                                            }
+                                            return cb({ status: "scc", msg: "Data Saved And Verification link has been Sent" });
                                         });
                                     }
                                 });
@@ -56,73 +82,49 @@ class user {
     }
 
     Email_Verify = (id, cb) => {
-        userdet.findOne({ UUID: id }, (err, found) => {
-            console.log("1");
-            if (err) {
-                console.log("2");
-                return cb({ status: "err", msg: "Internal Error While Data Search" });
-            }
-            else if (!found) {
-                console.log("3");
-
-                cb({ status: "err", msg: "User Not Found" });
-            }
+        this.find_One_user_for_found({ parameter: 'UUID', data: id }, cbData => {
+            if (cbData.status == "err") return cb({ status: "err", msg: cbData.msg });
             else {
-                console.log("4");
-
-                // if (found.expiry_date >= found.Date_Of_Joining) {
-                if (found.Emailveridied == false || found.Status == false) {
-                    console.log("5");
-
+                if (cbData.data.Emailveridied == false || cbData.data.Status == false) {
                     userdet.findOneAndUpdate({ UUID: id }, {
                         $set: { Emailveridied: true, Status: true }
                     }, (err, updated) => {
                         if (err) {
-                            console.log("6");
                             return cb({ status: "err", msg: "Unable to Verify Email" });
                         }
                         else {
-                            console.log("7");
-
                             return cb({ status: "scc", msg: "Email Verfied Successfully" });
                         }
                     });
                 } else {
-                    console.log("8");
-
                     cb({ status: "scc", msg: "Email Already Verified" });
                 }
-                // } else {
-                //     cb({ status: "err", msg: "Session Expired" });
-                // }
             }
         });
     }
 
     Login_User(data, cb) {
-        userdet.findOne({ Emailid: data.email }, (err, found) => {
-            if (err) return cb({ status: "err", msg: "Error while finding data" });
-            if (found) {
-                if (found.Emailveridied === true && found.Status === true) {
-                    if (found.Password === data.password) {
-                        return cb({ status: "scc", msg: "User Loged in Succesfully", userdata: found });
+        this.find_One_user_for_found({ parameter: "Emailid", data: data.email }, cbData => {
+            if (cbData.status == "err") return cb({ status: "err", msg: cbData.msg });
+            else {
+                if (cbData.data.Emailveridied === true && cbData.data.Status === true) {
+                    if (cbData.data.Password === data.password) {
+                        return cb({ status: "scc", msg: "User Loged in Succesfully", userdata: cbData.data });
                     } else {
                         return cb({ status: "err", msg: "Wrong Password" });
                     }
                 } else {
-                    return cb({ status: "err", msg: "Please Register yourself OR Verify your Email ID" });
+                    return cb({ status: "err", msg: "Email ID not verified" });
                 }
-            } else {
-                return cb({ status: "err", msg: "Email ID is not Registered" });
             }
-        }); // findOne
+        });
     }
 
     profiledetails = (data, cb) => {
-        userdet.findOne({ Emailid: data.data.Emailid }, (err, found) => {
-            if (err) return cb({ status: "err", msg: "Error While Finding Data" });
-            else if (!found) cb({ status: "err", msg: "Unable To Find Records" });
-            else cb({ status: "scc", msg: "Records Found Successfully", data: found });
+
+        this.find_One_user_for_found({ parameter: "Emailid", data: data.data.Emailid }, cbData => {
+            if (cbData.status == "err") return cb({ status: "err", msg: cbData.msg });
+            else return cb({ status: "scc", msg: "Records Found Successfully", data: cbData.data });
         })
     }
 
@@ -146,6 +148,25 @@ class user {
             if (err) return cb({ status: "err", msg: "Error While Finding Data" });
             else if (!found) return cb({ status: "err", msg: "Cant Find The Data" });
             else return cb({ status: "scc", msg: "Data Found And Updated Successfully", data: found });
+        });
+    }
+
+    find_One_user_for_found = (data, cb) => {
+        var par = data.parameter;
+        userdet.findOne({ [par]: data.data }, (err, found) => {
+            if (err) return cb({ status: "err", msg: "error While Finding Data" });
+            else if (!found) return cb({ status: "err", msg: "Unable To Find User" });
+            else return cb({ status: "scc", msg: "Data Found Successfully", data: found });
+        });
+    }
+
+    find_One_user_for_not_found = (data, cb) => {
+        // console.log(parameter);
+        var par = data.parameter;
+        userdet.findOne({ [par]: data.data }, (err, found) => {
+            if (err) return cb({ status: "err", msg: "error While Finding Data" });
+            else if (found) return cb({ status: "err", msg: "User already exists" });
+            else return cb({ status: "scc", msg: "Data Not found" });
         });
     }
 };

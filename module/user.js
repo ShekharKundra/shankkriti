@@ -56,6 +56,13 @@ var userdetials = mongoose.Schema({
     UUID: {
         type: String,
     },
+    EmailErr: {
+        type: Boolean,
+        default: false,
+    },
+    EmailErrMsg: {
+        type: String,
+    },
     Date_Of_Joining: {
         type: Date,
         default: Date.now(),

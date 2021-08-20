@@ -57,22 +57,23 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" href="/FeedBack"><strong>Feed Back</strong></a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="/user/reg"><strong>Register</strong></a>
-                        </li>
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                <strong>
-                                    <img id="header_Profile_Icon" src="../assets/images/Profilepic.png" alt="Profilepic">
-                                </strong>
-                            </a>
-
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item profileItem" href="/user/profile">Manage Profile</a></li>
-                                <li><a class="dropdown-item profileItem" href="/user/logout">Sign Out</a></li>
-                            </ul>
-                        </li>
-                        
+                        <% if(is_User == false) { %>
+                            <li class="nav-item"><a class="nav-link" href="/user/reg"><strong>Register/Login</strong></a>
+                            </li>
+                        <% } %>
+                        <% if(is_User == true) { %>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <strong>
+                                        <img id="header_Profile_Icon" src="../assets/images/Profilepic.png" alt="Profilepic">
+                                    </strong>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item profileItem" href="/user/profile">Manage Profile</a></li>
+                                    <li><a class="dropdown-item profileItem" href="/user/logout">Sign Out</a></li>
+                                </ul>
+                            </li>
+                        <% } %>                        
                     </ul>
                 </div>
             </div>

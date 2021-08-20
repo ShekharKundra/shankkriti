@@ -4,7 +4,7 @@ var config = require("./config.json");
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(config.mongoose, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(config.mongoose, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false });
 
 const connectDB = mongoose.connection;
 
