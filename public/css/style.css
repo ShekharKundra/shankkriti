@@ -1099,3 +1099,100 @@ td>a>img {
     font-weight: bold;
 }
 
+.address
+{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);   
+}
+@media (max-width:992px)
+{
+    .address
+    {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .add_address
+    {
+        min-height: 15em;
+    }
+}
+.card
+{
+    border-bottom: 3px solid #e54d26; 
+}
+
+#html_2nd_div
+{
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #cfcfcf;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #e54d26;
+}
+
+#html_3rd_div
+{
+    width: 100%;
+    border-bottom: 1px solid #cfcfcf;
+    font-size: 13px;
+    padding: 10px;
+}
+#html_4th_div
+{
+    width: 100%;
+    padding: 10px;
+}
+
+.add_address 
+{
+    border: 3px dashed #e54d26;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-plus
+{
+ transform: scale(4);
+}
+
+.color_picker
+{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 2px;
+}
+.colors
+{
+    height: 30px;
+    border: .5px solid rgb(206, 206, 206);
+}
+.fabric_list
+{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+@media (max-width:767px)
+{
+    .fabric_list
+    {
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+@media (max-width:498px)
+{
+    .fabric_list
+    {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width:770px)
+{
+    .color_picker
+    {
+        grid-template-columns: repeat(2,1fr);
+    }
+}

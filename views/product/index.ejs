@@ -18,15 +18,61 @@
                             </li>
                             <% }) %>
                     </ul>
-                    <br />
+                </div>
+
+                <div class="block pad types">
                     <ul class="nav flex-column below" style="text-align: left;">
                         <li class="nav-header">Fabric</li>
-                        <li><a href="/products">Banarsi</a></li>
-                        <li><a href="/products">Cotton</a></li>
-                        <li><a href="/products">Kota</a></li>
-                        <li><a href="/products">Crepe</a></li>
+
+                        <div class="fabric_list">
+                            <% productDescription[0].Fabric.forEach(function (Fabric) { %>
+                                <!-- <li class="active"> -->
+                                <li>
+                                    <a href="/products/<%= Fabric %>">
+                                        <%= Fabric.toString().replace(/_/g, ' ' ) %>
+                                    </a>
+                                </li> 
+                            <% }) %>
+                        </div>
+                            
                     </ul>
                 </div>
+
+                <div class="block pad types">
+                    <ul class="nav flex-column below" style="text-align: left;">
+                    <li class="nav-header">Colour</li>
+                        
+                    <div class="color_picker">
+                        <a href=""><div class="colors" style="background-color: #ff0000;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #2e8b57;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #0000ff;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #f5f5f5;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #ffffff;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #ffa500;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #000000;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #40e0d0;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #800000"></div></a>
+                        <a href=""><div class="colors" style="background-color: #FFE5B4"></div></a>
+                        <a href=""><div class="colors" style="background-color: #f5f5dc;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #fffdd0"></div></a>
+                        <a href=""><div class="colors" style="background-color: #58181f;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #ffff00;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #e1ad01;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #e73895;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #ffc0cb;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #808080;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #e0b0ff;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #800080;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #a52a2a;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #136207;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #50c878;"></div></a>
+                        <a href=""><div class="colors" style="background-color: #708238;"></div></a>
+                    </div>
+
+                </ul>
+
+                </div>
+
                 <div class="block randomizer">
                     <h4 class="title">
                         <span class="pull-left"><span class="text">Randomize</span></span>
@@ -113,4 +159,6 @@
             </div>
         </div>
     </section>
+
+
     <%- include ("../partials/footer"); %>
