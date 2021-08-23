@@ -192,4 +192,38 @@ router.get('/new_profile', (req, res) => {
     });
 });
 
+router.get('/emailerror', (req, res) => {
+
+    user.emailError(cbData => {
+        if (cbData.status == "err") {
+            res.status(200).redirect("/");
+        }
+        else if (cbData.status == "scc") {
+            res.status(200).render('../views/emailError/emailError.ejs',
+                {
+                    title: "emailError",
+                    tagdata: "",
+                    productsData: "cbData.data",
+                    bestSellerData: "cbBestSeller.data",
+                    randomData: "",
+                    productDescription: "",
+                    data: cbData.data
+                });
+        }
+        else {
+            res.status(200).render('../views/emailError/emailError.ejs',
+                {
+                    title: "emailError",
+                    tagdata: "",
+                    productsData: "cbData.data",
+                    bestSellerData: "cbBestSeller.data",
+                    randomData: "",
+                    productDescription: "",
+                    data: ""
+                });
+        }
+    })
+
+});
+
 module.exports = router;
