@@ -121,8 +121,7 @@ class user {
     }
 
     profiledetails = (data, cb) => {
-
-        this.find_One_user_for_found({ parameter: "Emailid", data: data.data.Emailid }, cbData => {
+        this.find_One_user_for_found({ parameter: "UUID", data: data.data }, cbData => {
             if (cbData.status == "err") return cb({ status: "err", msg: cbData.msg });
             else return cb({ status: "scc", msg: "Records Found Successfully", data: cbData.data });
         })

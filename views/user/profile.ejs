@@ -9,7 +9,6 @@
     <div>
         <h4 class="title"><span class="text"><strong>Profile</strong> Page</span></h4>
 
-        <form action="/user/edit_Profile" method="get" class="form-stacked">            
             <fieldset>
                 <div class="control-group row">
                     
@@ -130,10 +129,13 @@
                 </fieldset>
 <% } %>
                 <hr>
+        <form action="/user/edit_Profile/<%= userdetails.UUID %>" method="get" class="form-stacked">            
+
                 <div class="actions center"><input tabindex="9" class="btn btn-dark large" type="submit"
                         value="Edit Profile"></div>
-            </fieldset>
         </form>
+    </fieldset>
+
     </div>
 </section>
 

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
+var uuid = require('uuid');
 var token = require('../token/tokenverification');
 var usercontroller = require('../controllers/usercontroller');
 
@@ -74,7 +75,7 @@ router.post('/login', tokenverify.Is_token_Login, (req, res) => {
         }
         else {
             req.flash("success", cbData.msg);
-            var token = jwt.sign({ data: cbData.userdata }, "Hello");   // creating token // 
+            var token = jwt.sign({ data: cbData.userdata.UUID }, "Hello");   // creating token // 
             res.cookie("token", token); // create cookie //
             return res.status(200).redirect("/index");
         }
@@ -96,7 +97,7 @@ router.get('/profile', tokenverify.Is_token, (req, res) => {
                     req.flash("error", cbData.msg);
                     return res.status(200).redirect('/');
                 } else {
-                    console.log(cbData.data);
+                    // console.log(cbData.data);
                     res.status(200).render('../views/user/profile', {
                         title: "My Profile",
                         tagdata: "",
@@ -111,7 +112,8 @@ router.get('/profile', tokenverify.Is_token, (req, res) => {
                             Username: cbData.data.Username,
                             Emailid: cbData.data.Emailid,
                             PhoneNo: cbData.data.PhoneNo,
-                            Address: cbData.data.Address
+                            Address: cbData.data.Address,
+                            UUID: cbData.data.UUID
                         }
                     });
                 }
@@ -120,7 +122,7 @@ router.get('/profile', tokenverify.Is_token, (req, res) => {
     })
 });
 
-router.get('/edit_Profile', tokenverify.Is_token, (req, res) => {
+router.get('/edit_Profile/:id', tokenverify.Is_token, (req, res) => {
     var token = res.locals.user;
     // console.log(token);
     var userdetails = jwt.verify(token, "Hello", (err, scc) => {
@@ -166,7 +168,7 @@ router.post('/edit', tokenverify.Is_token, (req, res) => {
             res.status(200).redirect('/user/profile');
         } else {
             res.clearCookie("token");
-            var token = jwt.sign({ data: cbData.data }, "Hello");
+            var token = jwt.sign({ data: cbData.data.UUID }, "Hello");
             res.cookie("token", token);
             req.flash("success", cbData.msg);
             res.status(200).redirect('/user/profile');
@@ -177,6 +179,17 @@ router.post('/edit', tokenverify.Is_token, (req, res) => {
 router.get('/logout', tokenverify.Is_token, (req, res) => {
     res.clearCookie('token');
     res.status(200).redirect('/');
+});
+
+router.get('/new_profile', (req, res) => {
+    res.status(200).render('../views/user/newprofile.ejs', {
+        title: "My Profile",
+        tagdata: "",
+        productsData: "cbData.data",
+        bestSellerData: "cbBestSeller.data",
+        randomData: "",
+        productDescription: "",
+    });
 });
 
 module.exports = router;
