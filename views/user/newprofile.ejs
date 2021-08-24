@@ -9,36 +9,44 @@
             <h4 class="title"><span class="text"><strong>Profile</strong> Page</span></h4>
             
                     <div class="address">
-                        <div class="card">
-                
-                            <div id="html_2nd_div"><p>DevGarg</p> </div>
-                                
-                            <div id="html_3rd_div">
-                            <p>
-                                <span style="font-weight: bold;">
-                                    Email :
-                                </span> devgarg717@gmail.com
-                            </p>
-                            <p>
-                                <span style="font-weight: bold;">
-                                    Phone No : 
-                                </span> 9718456789
-                            </p>
-                            <p>
-                                <span style="font-weight: bold;">
-                                    Address :
-                                </span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Est laborum qui provident hic. Obcaecati sit quos quasi, culpa eveniet veritatis! Ipsum sit, aspernatur vel non earum modi sequi labore eum.
-                                
-                            </p>
-                            </div>
-                                
-                            <div id="html_4th_div">
-                                <h5>
-                                    <a href="#">Edit Profile</a> | 
-                                    <a href="#">Remove</a>
-                                </h5>
-                            </div>
-                        </div> 
+                        <% userdetails.Address.forEach( function (addresses) { %>
+                            <div class="card">
+                    
+                                <div id="html_2nd_div"><p><%- userdetails.Username %></p> </div>
+                                    
+                                <div id="html_3rd_div">
+                                <p>
+                                    <span style="font-weight: bold;">
+                                        Email :
+                                    </span> <%- userdetails.Emailid %>
+                                </p>
+                                <p>
+                                    <span style="font-weight: bold;">
+                                        Phone No : 
+                                    </span> <%- userdetails.PhoneNo %>
+                                </p>
+                                <p>
+                                    <span style="font-weight: bold;">
+                                        Address :
+                                    </span>
+                                    <% if(userdetails.Address.length > 0) { %> 
+                                        <%= addresses.address.HouseNo %>
+                                        <%= addresses.address.City %>,
+                                        <%= addresses.address.State %>,
+                                        <%= addresses.address.PostalCode %>
+                                        <%= addresses.address.Country %>
+                                    <% } %>
+                                </p>
+                                </div>
+                                    
+                                <div id="html_4th_div">
+                                    <h5>
+                                        <a href="#">Edit Profile</a> | 
+                                        <a href="#">Remove</a>
+                                    </h5>
+                                </div>
+                            </div> 
+                        <% }) %>
 
                         <div style="height: 50px;"></div>
 
@@ -48,7 +56,7 @@
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </a>
                             <br>
-                            <a href="">
+                            <a href="" style="padding-top: 20px;">
                                 <h1>Add Address</h1>
                             </a>
                         </div> 

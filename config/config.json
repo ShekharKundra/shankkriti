@@ -8,7 +8,10 @@
     "product": [{
         "Style": ["Sarees", "Stitched_Suit", "Unstitched_Suit"],
         "Fabric": ["Banarsi", "Cotton", "Kota", "Crepe", "Chanderi", "Handloom", "Silk", "Art Silk", "Georgette", "Khaddi Georgette", "Mulmul", "Linen", "Maheshwari", "Brocade", "Kim Kabaab", "Shiffon", "Pattu Sarees", "Ikkat", "Kanchipuram Sarees"],
-        "colour": ["#ff0000", "#2e8b57"]
+        "colour": {
+            "colorName": ["Red", "Mehndi Green"],
+            "colourValue": ["#ff0000"] 
+        }
     }, {
         "Style1": ["Sarees", "Stitched_Suit", "Unstitched_Suit"],
         "Fabric1": ["Sarees", "Stitched_Suit", "Unstitched_Suit"]

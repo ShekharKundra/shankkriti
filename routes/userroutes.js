@@ -181,15 +181,42 @@ router.get('/logout', tokenverify.Is_token, (req, res) => {
     res.status(200).redirect('/');
 });
 
-router.get('/new_profile', (req, res) => {
-    res.status(200).render('../views/user/newprofile.ejs', {
-        title: "My Profile",
-        tagdata: "",
-        productsData: "cbData.data",
-        bestSellerData: "cbBestSeller.data",
-        randomData: "",
-        productDescription: "",
-    });
+router.get('/new_profile', tokenverify.Is_token, (req, res) => {
+    var token = res.locals.user;
+    // var is_User = res.locals.is_User;
+    var userdetails = jwt.verify(token, "Hello", (err, scc) => {
+        if (err) {
+            console.log(err)
+            req.flash("error", 'Some Error Occured');
+            return res.status(200).redirect('/');
+        } else {
+            user.profiledetails(scc, cbData => {
+                if (cbData.status == "err") {
+                    console.log(cbData.msg);
+                    req.flash("error", cbData.msg);
+                    return res.status(200).redirect('/');
+                } else {
+                    res.status(200).render('../views/user/newprofile.ejs', {
+                        title: "My Profile",
+                        tagdata: "",
+                        productsData: "cbData.data",
+                        bestSellerData: "cbBestSeller.data",
+                        randomData: "",
+                        productDescription: "",
+                        userdetails: {
+                            Fname: cbData.data.Fname,
+                            Lname: cbData.data.Lname,
+                            Username: cbData.data.Username,
+                            Emailid: cbData.data.Emailid,
+                            PhoneNo: cbData.data.PhoneNo,
+                            Address: cbData.data.Address,
+                            UUID: cbData.data.UUID
+                        }
+                    });
+                }
+            })
+        }
+    })
 });
 
 router.get('/emailerror', (req, res) => {
