@@ -1164,18 +1164,45 @@ td>a>img {
 
 .fabric_list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+}
+#fabricChoice
+{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+}
+
+#fabricChoice input
+{
+    transform: scale(1.2);
+}
+#fabricChoice label
+{
+    font-size: 1.2em;
 }
 
 @media (max-width:767px) {
     .fabric_list {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width:498px) {
+@media (max-width:404px) {
     .fabric_list {
         grid-template-columns: repeat(2, 1fr);
+    }  
+
+    #fabricChoice input
+    {
+        transform: scale(1.1);
+    }
+
+    #fabricChoice label
+    {
+        font-size: .9em;
     }
 }
 

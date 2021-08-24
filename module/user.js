@@ -39,6 +39,9 @@ var userdetials = mongoose.Schema({
             Country: {
                 type: String,
                 default: " "
+            },
+            Address_UUID: {
+                type: String
             }
         }
     },

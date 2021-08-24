@@ -9,7 +9,14 @@
     <div>
         <h4 class="title"><span class="text"><strong>Profile</strong> Page</span></h4>
 
-        <form action="/user/edit" method="post" class="form-stacked">            
+        <% if(userdetails.Address == null) { %>
+        <form action="/user/add" method="post" class="form-stacked">    
+            
+        <% } else { %> 
+        <form action="/user/edit" method="post" class="form-stacked">    
+        
+        <% } %>
+
             <fieldset>
                 <div class="control-group row">
                     
@@ -132,8 +139,17 @@
                                 </fieldset>
                 <% } %>
                 <hr>
+
+                <% if(userdetails.Address == null) { %>
+                    
                 <div class="actions center"><input tabindex="9" class="btn btn-dark large" type="submit"
-                        value="SUBMIT"></div>
+                        value="ADD"></div>
+                    <% } else { %>
+                    
+                <div class="actions center"><input tabindex="9" class="btn btn-dark large" type="submit"
+                    value="SUBMIT"></div>
+                    <% } %>
+
             </fieldset>
         </form>
     </div>

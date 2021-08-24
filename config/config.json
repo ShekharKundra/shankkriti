@@ -7,7 +7,7 @@
     "mongoose" : "mongodb+srv://Dev771:763200@De@cluster0.lkmwh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     "product": [{
         "Style": ["Sarees", "Stitched_Suit", "Unstitched_Suit"],
-        "Fabric": ["Banarsi", "Cotton", "Kota", "Crepe", "Chanderi", "Handloom", "Silk", "Art Silk", "Georgette", "Khaddi Georgette", "Mulmul", "Linen", "Maheshwari", "Brocade", "Kim Kabaab", "Shiffon", "Pattu Sarees", "Ikkat", "Kanchipuram Sarees"],
+        "Fabric": ["Art Silk", "Banarsi", "Brocade", "Chanderi", "Cotton", "Crepe", "Georgette", "Handloom", "Ikkat", "Kanchipuram Sarees", "Khaddi Georgette", "Kim Kabaab",  "Kota", "Linen", "Maheshwari", "Mulmul", "Pattu Sarees", "Shiffon", "Silk"],
         "colour": {
             "colorName": ["Red", "Mehndi Green"],
             "colourValue": ["#ff0000"] 

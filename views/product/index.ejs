@@ -8,7 +8,7 @@
             <div class="col-md-3 col-12 col">
                 <div class="block pad types">
                     <ul class="nav flex-column" style="text-align: left;">
-                        <li class="nav-header">Style</li>
+                        <li class="nav-header" style="text-align: center;">Style</li>
                         <% productDescription[0].Style.forEach(function (style) { %>
                             <!-- <li class="active"> -->
                             <li>
@@ -22,52 +22,52 @@
 
                 <div class="block pad types">
                     <ul class="nav flex-column below" style="text-align: left;">
-                        <li class="nav-header">Fabric</li>
+                        <li class="nav-header" style="text-align: center;">Fabric</li>
 
                         <div class="fabric_list">
                             <% productDescription[0].Fabric.forEach(function (Fabric) { %>
                                 <!-- <li class="active"> -->
-                                <li>
-                                    <a href="/products/<%= Fabric %>">
+                                <li id="fabricChoice">
+                                  <input type="checkbox" name="<%= Fabric %>" id="<%= Fabric %>" onchange="window.location.href='/<%= Fabric %>'">   
+                                  <label for="<%= Fabric %>">
                                         <%= Fabric.toString().replace(/_/g, ' ' ) %>
-                                    </a>
+                                  </label>
                                 </li> 
                             <% }) %>
                         </div>
-                            
+                
                     </ul>
                 </div>
 
                 <div class="block pad types" id="color_picker">
-                    <ul class="nav flex-column below" style="text-align: left; width: 100%;">
-                    <li class="nav-header">Colour</li>
+                    <ul class="nav flex-column below" style="width: 100%;">
+                    <li class="nav-header" style="text-align: center;">Colour</li>
                         
                     <div class="color_picker">
-                        <a href=""><div class="colors" style="background-color: #ff0000;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #ff0000;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #2e8b57;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #0000ff;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #f5f5f5;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #ffffff;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #ffa500;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #000000;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #40e0d0;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #800000"></div></a>
-                        <a href=""><div class="colors" style="background-color: #FFE5B4"></div></a>
-                        <a href=""><div class="colors" style="background-color: #f5f5dc;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #fffdd0"></div></a>
-                        <a href=""><div class="colors" style="background-color: #58181f;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #ffff00;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #e1ad01;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #e73895;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #ffc0cb;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #808080;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #e0b0ff;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #800080;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #a52a2a;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #136207;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #50c878;"></div></a>
-                        <a href=""><div class="colors" style="background-color: #708238;"></div></a>
+                        <a href=""><div class="colors" title="Red" style="background-color: #ff0000;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #2e8b57;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #0000ff;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #f5f5f5;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #ffffff;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #ffa500;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #000000;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #40e0d0;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #800000"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #FFE5B4"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #f5f5dc;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #fffdd0"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #58181f;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #ffff00;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #e1ad01;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #e73895;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #ffc0cb;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #808080;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #e0b0ff;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #800080;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #a52a2a;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #136207;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #50c878;"></div></a>
+                        <a href=""><div class="colors" title="" style="background-color: #708238;"></div></a>
                     </div>
 
                 </ul>

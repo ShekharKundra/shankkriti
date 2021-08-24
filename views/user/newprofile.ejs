@@ -9,7 +9,11 @@
             <h4 class="title"><span class="text"><strong>Profile</strong> Page</span></h4>
             
                     <div class="address">
+
+                        <% var count=0 %>
                         <% userdetails.Address.forEach( function (addresses) { %>
+                            
+                            <% count++ %>
                             <div class="card">
                     
                                 <div id="html_2nd_div"><p><%- userdetails.Username %></p> </div>
@@ -41,22 +45,22 @@
                                     
                                 <div id="html_4th_div">
                                     <h5>
-                                        <a href="#">Edit Profile</a> | 
+                                        <a href="/user/edit_Profile/:id">Edit Profile</a> | 
                                         <a href="#">Remove</a>
                                     </h5>
                                 </div>
                             </div> 
                         <% }) %>
-
+                    <% if(count<=1){ %>
                         <div style="height: 50px;"></div>
-
+                    <% } %>    
                         <div class="card add_address">
                                 
                             <a href="">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </a>
                             <br>
-                            <a href="" style="padding-top: 20px;">
+                            <a href="/user/Add_Profile/<%= userdetails.UUID %>" style="padding-top: 20px;">
                                 <h1>Add Address</h1>
                             </a>
                         </div> 
