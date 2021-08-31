@@ -132,6 +132,9 @@ class user {
             $set: {
                 Fname: data.fname,
                 Lname: data.lname,
+                Username: data.username,
+            },
+            $push: {
                 Address: {
                     address: {
                         HouseNo: data.address,
@@ -140,8 +143,7 @@ class user {
                         PostalCode: data.pcode,
                         Country: data.country
                     }
-                },
-                Username: data.username,
+                }
             }
         }, (err, found) => {
             if (err) return cb({ status: "err", msg: "Error While Finding Data" });
@@ -170,12 +172,96 @@ class user {
     }
 
     emailError = (cb) => {
-        userdet.find({EmailErr: true}, (err,found) => { 
-            if(err) return cb({status:"err", msg:"error while finding data."});
-            else if(!found) return cb({status:"abc", msg:"No Data Found"});
-            else return cb({status:"scc", msg:"Data Found Successfully", data:found});
+        userdet.find({ EmailErr: true }, (err, found) => {
+            if (err) return cb({ status: "err", msg: "error while finding data." });
+            else if (!found) return cb({ status: "abc", msg: "No Data Found" });
+            else return cb({ status: "scc", msg: "Data Found Successfully", data: found });
         });
-    }      
+    }
+
+    user_Address_profile = (data, cb) => {
+        // console.log(data.Address_UUID);
+        userdet.findOne({ UUID: data.UUID.data }, (err, found) => {
+            if (err) return cb({ status: "err", msg: "error While Finding Data" });
+            else if (!found) return cb({ status: "err", msg: "Data Not Found" });
+            else {
+                console.log(data.Address_UUID)
+                console.log(found)
+                found.Address.forEach(function (Add) {
+                    if (Add.address.Address_UUID == data.Address_UUID) {
+                        return cb({ status: "scc", msg: "Data Found", data: found, address_data: Add })
+                    }
+                });
+            }
+        })
+    }
+
+    Add_address = (data, cb) => {
+        this.find_One_user_for_found({ parameter: "Emailid", data: data.email }, cbData => {
+            if (cbData.status == "err") return cb({ status: "err", msg: cbData.msg });
+            else {
+                userdet.findOneAndUpdate({ Emailid: cbData.data.Emailid }, {
+                    $push: {
+                        Address: {
+                            address: {
+                                HouseNo: data.address,
+                                State: data.state,
+                                City: data.city,
+                                PostalCode: data.pcode,
+                                Country: data.country,
+                                Address_UUID: uuid.v4()
+                            }
+                        }
+                    }
+                }, (err, found) => {
+                    if (err) return cb({ status: "err", msg: "Error While Finding Data" });
+                    else if (!found) return cb({ status: "err", msg: "Data Not Found" });
+                    else return cb({ status: "scc", msg: "Data Updated Successfully" });
+                });
+            }
+        })
+    }
+
+    edit_profile = (data, cb) => {
+        this.find_One_user_for_found({ parameter: "Emailid", data: data.body_data.email }, cbData => {
+            if (cbData.status == "err") return cb({ status: "err", msg: "Error While Finding Data" });
+            else {
+                userdet.findOneAndUpdate({ Emailid: data.body_data.email, "Address.address.Address_UUID": data.data }, {
+                    $set: {
+                        "Address.$.address.HouseNo": data.body_data.address,
+                        "Address.$.address.City": data.body_data.city,
+                        "Address.$.address.State": data.body_data.state,
+                        "Address.$.address.PostalCode": data.body_data.pcode,
+                        "Address.$.address.Country": data.body_data.country
+                    }
+                }, (err, done) => {
+                    if (err) return cb({ status: "err", msg: "Error While Finding Data" });
+                    else if (!done) return cb({ status: "err", msg: "Error While Finding or Updating Data" });
+                    else return cb({ status: "scc", msg: "Data Updated Successfully" });
+                })
+            }
+        })
+    }
+
+    remove_address = (data, cb) => {
+        this.find_One_user_for_found({ parameter: "UUID", data: data.data.data }, cbData => {
+            if (cbData.status == "err") return cb({ status: "err", msg: cbData.msg });
+            else {
+                userdet.findOneAndUpdate({ UUID: data.data.data }, {
+                    $pull: {
+                        "address.Address_UUID": data.Address_UUID
+                    }
+                }, { getAutoValues: false }, (err, scc) => {
+                    if (err) return cb({ status: "err", msg: "Error While Data Finding" });
+                    else if (!scc) return cb({ sattus: "err", msg: "Couldn't Find Or Remove Data" });
+                    else {
+                        console.log(scc.Address);
+                        return cb({ status: "scc", msg: "Data Removed Successfully" });
+                    }
+                })
+            }
+        })
+    }
 };
 
 module.exports = user;

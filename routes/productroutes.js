@@ -22,6 +22,14 @@ router.get('/', (req, res) => {
         twdescription: "ShanKKriti offers Sarees, Salwar Kameez, Suits Kurtis, Churidars, , Anarkali Suit, Jewellery, Designer Sarees, Designer Suits online in India,",
     }
     products.showRandomeProducts((cbRandomProducts) => {
+
+        var style = req.path.split('/');
+        console.log(req.query);
+        if (req.query.Fabric == null) {
+            wholeurl = req.protocol + '://' + req.get('host') + req.originalUrl + '?'
+        } else {
+            wholeurl = req.protocol + '://' + req.get('host') + req.originalUrl + '&'
+        }
         if (cbRandomProducts.status == "err") {
             res.status(200).redirect("/error404");
         } else {
@@ -29,7 +37,7 @@ router.get('/', (req, res) => {
                 if (cbBestSeller.status == "err") {
                     res.status(200).redirect("/error404");
                 } else {
-                    products.ShowAllProducts((CbData) => {
+                    products.ShowAllProducts({ Fabric: req.query.Fabric, Color: req.query.Color }, (CbData) => {
                         if (CbData.status == "err") {
                             res.status(200).redirect("/error404");
                         } else {
@@ -40,7 +48,8 @@ router.get('/', (req, res) => {
                                 productsData: CbData.data,
                                 bestSellerData: cbBestSeller.data,
                                 randomData: cbRandomProducts.data,
-                                productDescription: config.product
+                                productDescription: config.product,
+                                wholeurl: wholeurl
                             });
                         }
                     });
@@ -50,8 +59,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/Sarees', (req, res) => {
-
+router.get(['/Sarees', '/Stitched_Suit', '/Unstitched_Suit'], (req, res) => {
     var tag = {
         description: "ShanKKriti Welcome You, Shop Indian Ethnic Wear For Women Online, Explore the top line collection by ShanKKriti including designer Silk Sarees, Suits",
         Keywords: "ShanKKriti , Buy Sarees , Salwar Kameez , suits at online , online apparel store , online fashion store , online clothing stores , womens clothing stores , online shopping for women , womens clothing online , fashion clothing , buy fashion clothing online , womens clothing , apparel for women , women's apparel , dresses for women , plus size dresses , Buy Indian Clothes , Indian Dresses , Indian Clothes , Indian Clothing , Indian Clothes Online , Indian Dresses Online , Buy Indian Clothes Online , Buy Indian Dresses , ShanKKriti.com",
@@ -63,6 +71,13 @@ router.get('/Sarees', (req, res) => {
         twtitle: "ShanKKriti, Buy Sarees Salwar Kameez Suits ",
         twdescription: "ShanKKriti offers Sarees, Salwar Kameez, Suits Kurtis, Churidars, , Anarkali Suit, Jewellery, Designer Sarees, Designer Suits online in India,",
     }
+    var style = req.path.split('/');
+    console.log(req.query);
+    if (req.query.Fabric == null) {
+        var url = req.protocol + '://' + req.get('host') + req.originalUrl + '?'
+    } else {
+        var url = req.protocol + '://' + req.get('host') + req.originalUrl + '&'
+    }
     products.showRandomeProducts((cbRandomProducts) => {
         if (cbRandomProducts.status == "err") {
             res.status(200).redirect("/error404");
@@ -71,7 +86,7 @@ router.get('/Sarees', (req, res) => {
                 if (cbBestSeller.status == "err") {
                     res.status(200).redirect("/error404");
                 } else {
-                    products.showByStyle('Saree', (cbData) => {
+                    products.showByStyle({ Fabric: req.query.Fabric, Color: req.query.Color, Style: style[1] }, (cbData) => {
                         if (cbData.status == "err") {
                             res.status(200).redirect("/error404");
                         } else {
@@ -81,88 +96,8 @@ router.get('/Sarees', (req, res) => {
                                 productsData: cbData.data,
                                 bestSellerData: cbBestSeller.data,
                                 randomData: cbRandomProducts.data,
-                                productDescription: config.product
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    });
-});
-
-router.get('/Stitched_Suit', (req, res) => {
-    console.log(req.originalUrl)
-    var tag = {
-        description: "ShanKKriti Welcome You, Shop Indian Ethnic Wear For Women Online, Explore the top line collection by ShanKKriti including designer Silk Sarees, Suits",
-        Keywords: "ShanKKriti , Buy Sarees , Salwar Kameez , suits at online , online apparel store , online fashion store , online clothing stores , womens clothing stores , online shopping for women , womens clothing online , fashion clothing , buy fashion clothing online , womens clothing , apparel for women , women's apparel , dresses for women , plus size dresses , Buy Indian Clothes , Indian Dresses , Indian Clothes , Indian Clothing , Indian Clothes Online , Indian Dresses Online , Buy Indian Clothes Online , Buy Indian Dresses , ShanKKriti.com",
-        ogurl: "http://shankkriti.com/product",
-        ogtitle: "ShanKKriti , Buy Sarees Salwar Kameez Suits",
-        ogdescription: "ShanKKriti offers Sarees, Salwar Kameez, Suits Kurtis, Churidars,  Anarkali Suit,  Designer Sarees, Designer Suits online in India",
-        ogimage: "/assets/images/favicon/favicon.png",
-        ogsecure_url: "/assets/images/favicon/favicon.png",
-        twtitle: "ShanKKriti, Buy Sarees Salwar Kameez Suits ",
-        twdescription: "ShanKKriti offers Sarees, Salwar Kameez, Suits Kurtis, Churidars, , Anarkali Suit, Jewellery, Designer Sarees, Designer Suits online in India,",
-    }
-    products.showRandomeProducts((cbRandomProducts) => {
-        if (cbRandomProducts.status == "err") {
-            res.status(200).redirect("/error404");
-        } else {
-            products.showBestSellerProducts((cbBestSeller) => {
-                if (cbBestSeller.status == "err") {
-                    res.status(200).redirect("/error404");
-                } else {
-                    products.showByStyle('Stitched', (cbData) => {
-                        if (cbData.status == "err") {
-                            res.status(200).redirect("/error404");
-                        } else {
-                            res.status(200).render('../views/product/index', {
-                                title: "Stitched Suit",
-                                tagdata: tag,
-                                productsData: cbData.data,
-                                bestSellerData: cbBestSeller.data,
-                                randomData: cbRandomProducts.data,
-                                productDescription: config.product
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    });
-});
-
-router.get('/Unstitched_Suit', (req, res) => {
-    var tag = {
-        description: "ShanKKriti Welcome You, Shop Indian Ethnic Wear For Women Online, Explore the top line collection by ShanKKriti including designer Silk Sarees, Suits",
-        Keywords: "ShanKKriti , Buy Sarees , Salwar Kameez , suits at online , online apparel store , online fashion store , online clothing stores , womens clothing stores , online shopping for women , womens clothing online , fashion clothing , buy fashion clothing online , womens clothing , apparel for women , women's apparel , dresses for women , plus size dresses , Buy Indian Clothes , Indian Dresses , Indian Clothes , Indian Clothing , Indian Clothes Online , Indian Dresses Online , Buy Indian Clothes Online , Buy Indian Dresses , ShanKKriti.com",
-        ogurl: "http://shankkriti.com/product",
-        ogtitle: "ShanKKriti , Buy Sarees Salwar Kameez Suits",
-        ogdescription: "ShanKKriti offers Sarees, Salwar Kameez, Suits Kurtis, Churidars,  Anarkali Suit,  Designer Sarees, Designer Suits online in India",
-        ogimage: "/assets/images/favicon/favicon.png",
-        ogsecure_url: "/assets/images/favicon/favicon.png",
-        twtitle: "ShanKKriti, Buy Sarees Salwar Kameez Suits ",
-        twdescription: "ShanKKriti offers Sarees, Salwar Kameez, Suits Kurtis, Churidars, , Anarkali Suit, Jewellery, Designer Sarees, Designer Suits online in India,",
-    }
-    products.showRandomeProducts((cbRandomProducts) => {
-        if (cbRandomProducts.status == "err") {
-            res.status(200).redirect("/error404");
-        } else {
-            products.showBestSellerProducts((cbBestSeller) => {
-                if (cbBestSeller.status == "err") {
-                    res.status(200).redirect("/error404");
-                } else {
-                    products.showByStyle('Unstitched', (cbData) => {
-                        if (cbData.status == "err") {
-                            res.status(200).redirect("/error404");
-                        } else {
-                            res.status(200).render('../views/product/index', {
-                                title: "Unstitched Suit",
-                                tagdata: tag,
-                                productsData: cbData.data,
-                                bestSellerData: cbBestSeller.data,
-                                randomData: cbRandomProducts.data,
-                                productDescription: config.product
+                                productDescription: config.product,
+                                wholeurl: url
                             });
                         }
                     });

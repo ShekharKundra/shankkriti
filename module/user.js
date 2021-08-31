@@ -19,6 +19,7 @@ var userdetials = mongoose.Schema({
     },
     Address: {
         type: Array,
+        optional: true,
         address: {
             HouseNo: {
                 type: String,

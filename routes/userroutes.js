@@ -132,7 +132,7 @@ router.get('/edit_Profile/:id', tokenverify.Is_token, (req, res) => {
             return res.status(200).redirect('/');
         } else {
             console.log(scc);
-            user.profiledetails(scc, cbData => {
+            user.user_Address_profile({ UUID: scc, Address_UUID: req.params.id }, cbData => {
                 if (cbData.status == "err") {
                     console.log(cbData.msg);
                     req.flash("error", cbData.msg);
@@ -152,28 +152,13 @@ router.get('/edit_Profile/:id', tokenverify.Is_token, (req, res) => {
                             Username: cbData.data.Username,
                             Emailid: cbData.data.Emailid,
                             PhoneNo: cbData.data.PhoneNo,
-                            Address: cbData.data.Address[0]
+                            Address: cbData.address_data.address
                         }
                     });
                 }
             })
         }
     })
-});
-
-router.post('/edit', tokenverify.Is_token, (req, res) => {
-    user.edit_profile(req.body, cbData => {
-        if (cbData.status == "err") {
-            req.flash("error", cbData.msg);
-            res.status(200).redirect('/user/profile');
-        } else {
-            res.clearCookie("token");
-            var token = jwt.sign({ data: cbData.data.UUID }, "Hello");
-            res.cookie("token", token);
-            req.flash("success", cbData.msg);
-            res.status(200).redirect('/user/profile');
-        }
-    });
 });
 
 router.get('/logout', tokenverify.Is_token, (req, res) => {
@@ -219,7 +204,6 @@ router.get('/new_profile', tokenverify.Is_token, (req, res) => {
     })
 });
 
-
 router.get('/Add_Profile/:id', tokenverify.Is_token, (req, res) => {
     var token = res.locals.user;
     // console.log(token);
@@ -236,6 +220,7 @@ router.get('/Add_Profile/:id', tokenverify.Is_token, (req, res) => {
                     req.flash("error", cbData.msg);
                     return res.status(200).redirect('/');
                 } else {
+                    console.log(cbData.data);
                     res.status(200).render('../views/user/editprofile', {
                         title: "My Profile",
                         tagdata: "",
@@ -248,7 +233,7 @@ router.get('/Add_Profile/:id', tokenverify.Is_token, (req, res) => {
                             Lname: cbData.data.Lname,
                             Username: cbData.data.Username,
                             Emailid: cbData.data.Emailid,
-                            PhoneNo: cbData.data.PhoneNo
+                            PhoneNo: cbData.data.PhoneNo,
                         }
                     });
                 }
@@ -289,6 +274,53 @@ router.get('/emailerror', (req, res) => {
         }
     })
 
+});
+
+router.post("/add", (req, res) => {
+    user.Add_address(req.body, cbData => {
+        if (cbData.status == "err") {
+            req.flash("error", cbData.msg);
+            return res.status(200).redirect('/user/new_profile');
+        } else {
+            req.flash("success", cbData.msg);
+            return res.status(200).redirect('/user/new_profile');
+        }
+    });
+});
+
+router.post('/edit/:id', (req, res) => {
+    user.edit_profile({ data: req.params.id, body_data: req.body }, cbData => {
+        if (cbData.status == "err") {
+            req.flash("error", cbData.msg);
+            res.status(200).redirect('/user/new_profile');
+        } else {
+            req.flash("success", cbData.msg);
+            res.status(200).redirect('/user/new_profile');
+        }
+    });
+});
+
+router.post('/remove/:id', (req, res) => {
+    var token = res.locals.user;
+    // console.log(token);
+    var userdetails = jwt.verify(token, "Hello", (err, scc) => {
+        if (err) {
+            console.log(err)
+            req.flash("error", 'Some Error Occured');
+            return res.status(200).redirect('/');
+        } else {
+            // console.log(req.params.id);
+            user.remove_address({ data: scc, Address_UUID: req.params.id }, cbData => {
+                if (cbData.status == "err") {
+                    req.flash("error", cbData.msg);
+                    res.status(200).redirect('/user/new_profile');
+                } else {
+                    req.flash("success", cbData.msg);
+                    res.status(200).redirect('/user/new_profile');
+                }
+            });
+        }
+    });
 });
 
 module.exports = router;

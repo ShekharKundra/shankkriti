@@ -28,7 +28,7 @@
                             <% productDescription[0].Fabric.forEach(function (Fabric) { %>
                                 <!-- <li class="active"> -->
                                 <li id="fabricChoice">
-                                  <input type="checkbox" name="<%= Fabric %>" id="<%= Fabric %>" onchange="window.location.href='/<%= Fabric %>'">   
+                                  <input type="checkbox" id="<%= Fabric %>" name="chbox" onchange="window.location.href='<%= wholeurl %>Fabric=<%= Fabric %>'" >   
                                   <label for="<%= Fabric %>">
                                         <%= Fabric.toString().replace(/_/g, ' ' ) %>
                                   </label>
@@ -161,5 +161,16 @@
         </div>
     </section>
 
+    <script>
+
+    // var $checks = $('input[name="chbox"]').change(function () {
+    //     var checked = $checks.filter(':checked').map(function () {
+    //         return $.trim($(this).next().text());
+    //     }).get().join(',')
+    //     var url = 'www.test.com/?Fabric=' + checked;
+    //     alert(url);
+    //     //do you ajax
+    // })
+    // </script>
 
     <%- include ("../partials/footer"); %>

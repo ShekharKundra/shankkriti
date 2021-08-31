@@ -10,13 +10,10 @@
         <h4 class="title"><span class="text"><strong>Profile</strong> Page</span></h4>
 
         <% if(userdetails.Address == null) { %>
-        <form action="/user/add" method="post" class="form-stacked">    
-            
+            <form action="/user/add" method="post" class="form-stacked">    
         <% } else { %> 
-        <form action="/user/edit" method="post" class="form-stacked">    
-        
+            <form action="/user/edit/<%- userdetails.Address.Address_UUID %>" method="post" class="form-stacked">    
         <% } %>
-
             <fieldset>
                 <div class="control-group row">
                     
@@ -102,14 +99,14 @@
                                     <div class="control-group">
                                         <label class="control-label">Address:</label>
                                         <div class="controls">
-                                            <input type="text" style="width: 100%;" name="address" placeholder="Address" class="input-l" value="<%= userdetails.Address.address.HouseNo %>" >
+                                            <input type="text" style="width: 100%;" name="address" placeholder="Address" class="input-l" value="<%= userdetails.Address.HouseNo %>" >
                                         </div>
                                     </div>
                 
                                     <div class="control-group">
                                         <label class="control-label">City:</label>
                                         <div class="controls">
-                                            <input type="text" style="width: 100%;" name="city" placeholder="City" class="input-l" value="<%= userdetails.Address.address.City %>" >
+                                            <input type="text" style="width: 100%;" name="city" placeholder="City" class="input-l" value="<%= userdetails.Address.City %>" >
                                         </div>
                                     </div>
                 
@@ -118,14 +115,14 @@
                                         <div class="col-md-6 col-12">
                                             <label class="control-label">State:</label>
                                             <div class="controls">
-                                                <input type="text" placeholder="Enter your State" name="state" class="input-l" value="<%= userdetails.Address.address.State %>" >
+                                                <input type="text" placeholder="Enter your State" name="state" class="input-l" value="<%= userdetails.Address.State %>" >
                                             </div>    
                                         </div>
                 
                                         <div class="col-md-6 col-12">
                                             <label class="control-label">Postcode:</label>
                                             <div class="controls">
-                                                <input type="text" name="pcode" placeholder="Enter your postalcode" class="input-l" value="<%= userdetails.Address.address.PostalCode %>" >
+                                                <input type="text" name="pcode" placeholder="Enter your postalcode" class="input-l" value="<%= userdetails.Address.PostalCode %>" >
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +130,7 @@
                                     <div class="control-group">
                                         <label class="control-label">Country:</label>
                                         <div class="controls">
-                                            <input type="text" style="width: 100%;" name="country" placeholder="Country" class="input-l" value="<%= userdetails.Address.address.Country %>" >
+                                            <input type="text" style="width: 100%;" name="country" placeholder="Country" class="input-l" value="<%= userdetails.Address.Country %>" >
                                         </div>
                                     </div>
                                 </fieldset>

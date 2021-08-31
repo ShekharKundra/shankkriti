@@ -45,8 +45,10 @@
                                     
                                 <div id="html_4th_div">
                                     <h5>
-                                        <a href="/user/edit_Profile/:id">Edit Profile</a> | 
-                                        <a href="#">Remove</a>
+                                        <a href="/user/edit_Profile/<%- addresses.address.Address_UUID %>">Edit Profile</a> |
+                                        <form action="/user/remove/<%- addresses.address.Address_UUID %>" method="POST">
+                                            <input type="submit" value="Remove" /> 
+                                        </form>
                                     </h5>
                                 </div>
                             </div> 
